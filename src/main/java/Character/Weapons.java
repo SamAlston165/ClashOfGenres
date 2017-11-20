@@ -1,4 +1,6 @@
 package Character;
 
-public class Weapons {
+public class Weapons
+{
+
 }

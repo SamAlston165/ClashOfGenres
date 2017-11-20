@@ -7,10 +7,10 @@ public class Game {
 
     public static void main(String[] args) {
 
-        //Splashscreen Object
+        //Splash screen Object
         // SplashScreen splash = new SplashScreen();
 
-        //Call to splashscreen main method
+        //Call to splash screen main method
         // splash.call();
 
         try {
