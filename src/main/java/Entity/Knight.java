@@ -1,4 +1,4 @@
 package Entity;
 
-public class Knight extends  {
+public class Knight extends Character{
 }

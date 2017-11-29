@@ -1,5 +1,8 @@
 package Entity;
 
+
+import org.newdawn.slick.*;
+
 public class User extends BasicGame {
 
     private static final int death = 0;
