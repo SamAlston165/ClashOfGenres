@@ -6,7 +6,6 @@ public class Character {
     private static final int death = 0;
 
     private String race;
-    private ClassType classType;
     private int max_hp;
     private int current_hp;
     private int lvl;

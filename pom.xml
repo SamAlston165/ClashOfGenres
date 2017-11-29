@@ -22,11 +22,7 @@
 
     <dependencies>
     <!-- https://mvnrepository.com/artifact/org.lwjgl/lwjgl -->
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl</artifactId>
-        <version>3.1.5</version>
-    </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/org.slick2d/slick2d-core -->
     <dependency>

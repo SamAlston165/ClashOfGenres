@@ -8,7 +8,7 @@ public class Game {
     public static void main(String[] args) {
 
         //Splash screen Object
-        // SplashScreen splash = new SplashScreen();
+         SplashScreen splash = new SplashScreen();
 
         //Call to splash screen main method
         // splash.call();
