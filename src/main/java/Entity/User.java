@@ -4,15 +4,25 @@ import org.newdawn.slick.*;
 
 public class User extends BasicGame {
 
-    //Animation variable
-    private Animation a;
-
+    private static final int death = 0;
     //Animation x coordinate
     public float x = 194;
-
     //Animation y coordinate
     public float y = 243;
-
+    //private String race;
+    //private ClassType classType;
+    private int max_hp = 100;
+    private int current_hp;
+    private int lvl;
+    private int maxLvl = 50;
+    private int attack;
+    private int defense;
+    //private Weapons weapon;
+    private int movement;
+    private int attackRange;
+    private int available;
+    //Animation variable
+    private Animation a;
     //User Image
     private Image i;
 
@@ -25,18 +35,73 @@ public class User extends BasicGame {
         return (int) x;
     }
 
-    public int getY() {
-        return (int) y;
-    }
-
     public void setX(float x) {
         this.x = (int) x;
+    }
+
+    public int getY() {
+        return (int) y;
     }
 
     public void setY(float y) {
         this.y = (int) y;
     }
 
+    public int getMovement() { return movement; }
+
+    public void setMovement(int movement) { this.movement = movement; }
+
+    public int getAttackRange() { return attackRange; }
+
+    public void setAttackRange(int attackRange) { this.attackRange = attackRange; }
+
+    public int getAvalible() { return available; }
+
+    public void setAvalible(int a) {
+        available = a;
+        return;
+    }
+
+    public int getDefense() { return defense; }
+
+    public void setDefense(int defense) { this.defense = defense; }
+
+    public int getAttack() { return attack; }
+
+    public void setAttack(int attack) { this.attack = attack; }
+
+    public int getMax_hp() { return max_hp; }
+
+    public void setMax_hp(int max_hp) { this.max_hp = max_hp; }
+
+    public int getCurrent_hp() { return current_hp; }
+
+    public void setCurrent_hp(int current_hp) { this.current_hp = current_hp; }
+
+    //change health (attacked'-' or healed'+')
+    public void changeHealth(int num) {
+        current_hp = current_hp + num;
+
+        //check if dead
+        if (current_hp <= death) {
+            setAvalible(death);
+            return;
+        }
+        //Prevents hp going above max
+        else if (current_hp > max_hp) {
+            current_hp = max_hp;
+            return;
+        }
+        return;
+    }
+
+    public int getLvl() { return lvl; }
+
+    public void setLvl(int lvl) { this.lvl = lvl; }
+
+    public int getDeath() { return death; }
+
+    public void setDeath(int death) { this.getDeath(); }
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {

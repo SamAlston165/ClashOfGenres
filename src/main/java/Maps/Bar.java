@@ -1,6 +1,6 @@
 package Maps;
 
-import Character.User;
+import Entity.User;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
