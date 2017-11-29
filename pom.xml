@@ -22,6 +22,21 @@
         <artifactId>slick2d-core</artifactId>
         <version>1.0.2</version>
     </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jcraft/jorbis -->
+        <dependency>
+            <groupId>org.jcraft</groupId>
+            <artifactId>jorbis</artifactId>
+            <version>0.0.17</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sf.sociaal/jME3-jogg -->
+        <dependency>
+            <groupId>net.sf.sociaal</groupId>
+            <artifactId>jME3-jogg</artifactId>
+            <version>3.0.0.20130526</version>
+        </dependency>
+
     </dependencies>
 
 </project>
