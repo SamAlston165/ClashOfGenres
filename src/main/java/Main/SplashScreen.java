@@ -27,7 +27,7 @@ public class SplashScreen extends JPanel {
 
             if (i == 0) {
                 pb.setStringPainted(true);
-                pb.setForeground(Color.magenta);
+                pb.setForeground(Color.GREEN);
             }
 
             if (i == 25) {
@@ -37,12 +37,12 @@ public class SplashScreen extends JPanel {
 
             if (i == 50) {
                 pb.setStringPainted(true);
-                pb.setForeground(Color.RED);
+                pb.setForeground(Color.GREEN);
             }
 
             if (i == 75) {
                 pb.setStringPainted(true);
-                pb.setForeground(Color.CYAN);
+                pb.setForeground(Color.GREEN);
             }
             //simulate heavy stuff
             try {
