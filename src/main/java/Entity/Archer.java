@@ -1,4 +1,6 @@
 package Entity;
 
-public class Archer {
+public class Archer extends Character {
+
+
 }
