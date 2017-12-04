@@ -6,12 +6,22 @@ public class Party {
 
     private static final int startingMoney = 100;
 
-    private ArrayList<Character> party;
-    private ArrayList<Item> inventory;
+    public ArrayList<Character> party;
+    public ArrayList<Item> inventory;
     private int money;
 
     //make a new party with 3 characters and starting money
     public Party(){
-        money = startingMoney;
+        setMoney(startingMoney);
+        party = new ArrayList<Character>();
+        inventory = new ArrayList<Item>();
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }

@@ -116,15 +116,10 @@ public class TownMap extends BasicGameState {
         //Int contains duration of animation
         kbd.update(gameContainer, 0);
 
-        //Transition button to Bar
-//        if (input.isKeyPressed(Input.KEY_ENTER)) {
-//            stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
-//        }
 
-        //Transition button to Battle Map
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
-            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
-        }
+//        if (input.isKeyPressed(Input.KEY_SPACE)) {
+//            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+//        }
 
         if(quit)
         {
@@ -266,17 +261,11 @@ public class TownMap extends BasicGameState {
 
         //Transition based from Character location
         if ((kbd.getX() == 584 && kbd.getY() <= 364) && (kbd.getX() == 584 && kbd.getY() >= 257)) {
-            //int choice = JOptionPane.showConfirmDialog(null, "Do you want to travel to the Battle Map?", "", JOptionPane.YES_NO_OPTION);
-            //if (choice == JOptionPane.YES_OPTION) {
-            //  kbd.setX(kbd.getX() - 1);
-            //  kbd.setY(kbd.getY());
+
             if(input.isKeyDown(Input.KEY_ENTER)) {
                 stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
             }
-        } //else if (choice == JOptionPane.NO_OPTION) {
-        //stateBasedGame.getCurrentState();
-
-        //input = null;
+        }
     }
 
 }
