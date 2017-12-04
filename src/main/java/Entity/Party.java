@@ -6,15 +6,15 @@ public class Party {
 
     private static final int startingMoney = 100;
 
-    public ArrayList<Character> party;
-    public ArrayList<Item> inventory;
+    private ArrayList<Character> party;
+    private ArrayList<Item> inventory;
     private int money;
 
     //make a new party with 3 characters and starting money
     public Party(){
         setMoney(startingMoney);
-        party = new ArrayList<Character>();
-        inventory = new ArrayList<Item>();
+        setParty(new ArrayList<Character>());
+        setInventory(new ArrayList<Item>());
     }
 
     public int getMoney() {
@@ -23,5 +23,21 @@ public class Party {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public ArrayList<Character> getParty() {
+        return party;
+    }
+
+    public void setParty(ArrayList<Character> party) {
+        this.party = party;
     }
 }

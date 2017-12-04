@@ -60,7 +60,9 @@ public class MongoWriter {
     //METHOD FOR TURNING A PARTY OBJECT INTO A MONGO DOCUMENT
     public static Document createSave(Party activeParty){
 
-        Document gameState = new Document();
+        BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
+        docBuilder.append("Money", activeParty.getMoney());
+        docBuilder.append("Items", activeParty.)
 
         return gameState;
 
