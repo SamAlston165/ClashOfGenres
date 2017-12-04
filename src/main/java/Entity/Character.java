@@ -4,7 +4,9 @@ import org.newdawn.slick.*;
 
 public class Character extends BasicGame {
 
+    //no magic numbers
     private static final int death = 0;
+    private static final int allAvalible = 111;
     //Animation x coordinate
     public float x = 194;
     //Animation y coordinate
@@ -29,6 +31,7 @@ public class Character extends BasicGame {
     //Default Constructor
     public Character() {
         super("");
+        available = allAvalible;
     }
 
     public int getX() {
