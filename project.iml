@@ -23,7 +23,7 @@
     <orderEntry type="module-library">
       <library name="Maven: javax.jnlp:jnlp-api:5.0">
         <CLASSES>
-          <root url="jar://C:/Program Files (x86)/Java/jdk1.8.0_111/jre/lib/javaws.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/javax/jnlp/jnlp-api/5.0/jnlp-api-5.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -31,23 +31,8 @@
     </orderEntry>
     <orderEntry type="library" name="Maven: org.jcraft:jorbis:0.0.17" level="project" />
     <orderEntry type="library" name="Maven: net.sf.sociaal:jME3-jogg:3.0.0.20130526" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/slick" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/Desktop/slick/javadoc" />
-        </JAVADOC>
-        <NATIVE>
-          <root url="file://$USER_HOME$/Desktop/slick" />
-        </NATIVE>
-        <SOURCES>
-          <root url="file://$USER_HOME$/Desktop/slick/src" />
-          <root url="file://$USER_HOME$/Desktop/slick/tools" />
-        </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Desktop/slick" recursive="false" />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver:3.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:bson:3.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:3.5.0" level="project" />
   </component>
 </module>
