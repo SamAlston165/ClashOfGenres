@@ -1,4 +1,6 @@
 package Entity;
 
-public class ItemShop {
+public class ItemShop
+{
+
 }

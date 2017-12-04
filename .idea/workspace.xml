@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6beaaa5e-b5b2-4c0f-b42f-d2b3756e2724" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_3_5_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_3_5_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_3_5_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/AI/AInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Main/MongoWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Res/TownMap.png" afterPath="$PROJECT_DIR$/Res/TownMap.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.iml" afterPath="$PROJECT_DIR$/project.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Entity/Character.java" afterPath="$PROJECT_DIR$/src/main/java/Entity/Character.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Entity/ItemShop.java" afterPath="$PROJECT_DIR$/src/main/java/Entity/ItemShop.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Entity/Party.java" afterPath="$PROJECT_DIR$/src/main/java/Entity/Party.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/Entity/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Maps/Bar.java" afterPath="$PROJECT_DIR$/src/main/java/Maps/Bar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Maps/BattleMap.java" afterPath="$PROJECT_DIR$/src/main/java/Maps/BattleMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Maps/TownMap.java" afterPath="$PROJECT_DIR$/src/main/java/Maps/TownMap.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +30,8 @@
       <file leaf-file-name="Character.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Character.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-862">
-              <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+            <state relative-caret-position="51">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -48,8 +60,8 @@
       <file leaf-file-name="Party.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Party.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+            <state relative-caret-position="221">
+              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -145,8 +157,6 @@
     <panes>
       <pane id="AndroidView" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,6 +222,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,7 +372,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -507,9 +518,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2193">
           <caret line="129" column="5" lean-forward="true" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
-          <folding>
-            <marker date="1512093799878" expanded="false" signature="4525:4531" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -578,9 +587,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding>
-            <marker date="1512093799878" expanded="false" signature="4525:4531" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -703,9 +710,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="188" column="5" lean-forward="false" selection-start-line="188" selection-start-column="5" selection-end-line="188" selection-end-column="5" />
-          <folding>
-            <marker date="1512093799878" expanded="false" signature="4525:4531" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -742,8 +747,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Party.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="221">
+          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -795,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Character.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-862">
-          <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>

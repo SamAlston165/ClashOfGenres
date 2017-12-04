@@ -1,6 +1,6 @@
 package Maps;
 
-import Entity.User;
+import Entity.Character;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -12,12 +12,18 @@ public class BattleMap extends BasicGameState {
     //Battle map image
     private Image battleMap;
 
-    //User object
-    private User kbd;
+    //Character object
+    private Character kbd;
 
     //Default Constructor matching superclass
     public BattleMap() {
         super();
+    }
+
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException
+    {
+
     }
 
     @Override
@@ -32,7 +38,7 @@ public class BattleMap extends BasicGameState {
         battleMap = new Image("Res/BattleMap.png");
 
         //Character reference
-        kbd = new User();
+        kbd = new Character();
 
         //Initializes Character
         kbd.init(gameContainer);
@@ -66,31 +72,53 @@ public class BattleMap extends BasicGameState {
         //Gets user coordinates and updates the user
         kbd.setX(kbd.getX());
         kbd.setY(kbd.getY());
+
+        //Int contains duration of animation
         kbd.update(gameContainer, 0);
 
         //Transition button to Town Map
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
+        if (input.isKeyDown(Input.KEY_ENTER)) {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
         //Transition button to Town Map
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
+        if (input.isKeyDown(Input.KEY_SPACE)) {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
         //Transition button to exit game
-        if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+        if (input.isKeyDown(Input.KEY_ESCAPE)) {
             System.exit(0);
         }
 
-        //Transition based from User location
+        //Detects collision on outer bounds
+        if (kbd.getX() == 585) {
+            kbd.x -= 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getY() == 587) {
+            kbd.y -= 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getY() == 31) {
+            kbd.y += 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getX() == 33) {
+            kbd.x += 1;
+        }
+
+        //Transition based from Character location
         if ((kbd.getX() == -38) && (kbd.getY() <= 271 || kbd.getY() >= 201)) {
             kbd.setX(kbd.getX() + 1);
             kbd.setY(kbd.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
-        //Transition based from User location
+        //Transition based from Character location
         if ((kbd.getX() == 520) && (kbd.getY() <= 299 || kbd.getY() >= 194)) {
             kbd.setX(kbd.getX() - 1);
             kbd.setY(kbd.getY());

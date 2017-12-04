@@ -13,8 +13,5 @@ public class Party {
     //make a new party with 3 characters and starting money
     public Party(){
         money = startingMoney;
-        party.add(new Knight());
-        party.add(new Archer());
-        party.add(new Character());
     }
 }
