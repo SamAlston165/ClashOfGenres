@@ -1,6 +1,6 @@
 package Maps;
 
-import Entity.User;
+import Entity.Character;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -12,8 +12,8 @@ public class BattleMap extends BasicGameState {
     //Battle map image
     private Image battleMap;
 
-    //User object
-    private User kbd;
+    //Character object
+    private Character kbd;
 
     //Default Constructor matching superclass
     public BattleMap() {
@@ -32,7 +32,7 @@ public class BattleMap extends BasicGameState {
         battleMap = new Image("Res/BattleMap.png");
 
         //Character reference
-        kbd = new User();
+        kbd = new Character();
 
         //Initializes Character
         kbd.init(gameContainer);
@@ -83,14 +83,14 @@ public class BattleMap extends BasicGameState {
             System.exit(0);
         }
 
-        //Transition based from User location
+        //Transition based from Character location
         if ((kbd.getX() == -38) && (kbd.getY() <= 271 || kbd.getY() >= 201)) {
             kbd.setX(kbd.getX() + 1);
             kbd.setY(kbd.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
-        //Transition based from User location
+        //Transition based from Character location
         if ((kbd.getX() == 520) && (kbd.getY() <= 299 || kbd.getY() >= 194)) {
             kbd.setX(kbd.getX() - 1);
             kbd.setY(kbd.getY());

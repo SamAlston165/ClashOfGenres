@@ -1,6 +1,6 @@
 package Maps;
 
-import Entity.User;
+import Entity.Character;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -12,8 +12,8 @@ public class TownMap extends BasicGameState {
     //Town map image
     private Image townMap;
 
-    //User object
-    private User kbd;
+    //Character object
+    private Character kbd;
 
     //Default Constructor matching superclass
     public TownMap() {
@@ -33,7 +33,7 @@ public class TownMap extends BasicGameState {
         townMap = new Image("Res/TownMap.png");
 
         //Character reference
-        kbd = new User();
+        kbd = new Character();
 
         //Initializes Character
         kbd.init(gameContainer);
@@ -77,18 +77,14 @@ public class TownMap extends BasicGameState {
             System.exit(0);
         }
 
-        //Transition based from User location
-        if ((kbd.getX() == -38) && (kbd.getY() <= 271 || kbd.getY() >= 201)) {
-            kbd.setX(kbd.getX() + 1);
-            kbd.setY(kbd.getY());
-            stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
+        //Transition based from Character location
+        if ((kbd.getX() == 584 && kbd.getY() <= 364) && (kbd.getX() == 584 && kbd.getY() >= 257)) {
+            //int choice = JOptionPane.showConfirmDialog(null, "Do you want to travel to the Battle Map?", "", JOptionPane.YES_NO_OPTION);
+            //if (choice == JOptionPane.YES_OPTION) {
+                //  kbd.setX(kbd.getX() - 1);
+                //  kbd.setY(kbd.getY());
+                stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+            } //else if (choice == JOptionPane.NO_OPTION) {
+                //stateBasedGame.getCurrentState();
+            }
         }
-
-        //Transition based from User location
-        if ((kbd.getX() == 520) && (kbd.getY() <= 299 || kbd.getY() >= 194)) {
-            kbd.setX(kbd.getX() - 1);
-            kbd.setY(kbd.getY());
-            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
-        }
-    }
-}

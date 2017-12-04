@@ -1,6 +1,6 @@
 package Maps;
 
-import Entity.User;
+import Entity.Character;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -12,8 +12,8 @@ public class Bar extends BasicGameState {
     //Bar map image
     private Image bar;
 
-    //User object
-    private User user;
+    //Character object
+    private Character character;
 
     //Default Constructor matching superclass
     public Bar() {
@@ -32,10 +32,10 @@ public class Bar extends BasicGameState {
         bar = new Image("Res/Bar.png");
 
         //Character reference
-        user = new User();
+        character = new Character();
 
         //Initializes Character
-        user.init(gameContainer);
+        character.init(gameContainer);
 
     }
 
@@ -46,7 +46,7 @@ public class Bar extends BasicGameState {
         bar.draw();
 
         //Draws Character
-        user.render(gameContainer, graphics);
+        character.render(gameContainer, graphics);
 
         //Displays Bar Map string
         graphics.drawString("Bar", 270, 400);
@@ -58,10 +58,10 @@ public class Bar extends BasicGameState {
         //Input Object
         Input input = gameContainer.getInput();
 
-        //Gets user coordinates and updates the user
-        user.setX(user.getX());
-        user.setY(user.getY());
-        user.update(gameContainer, 0);
+        //Gets character coordinates and updates the character
+        character.setX(character.getX());
+        character.setY(character.getY());
+        character.update(gameContainer, 0);
 
 
         //Transition button to Town Map
@@ -79,17 +79,17 @@ public class Bar extends BasicGameState {
             System.exit(0);
         }
 
-        //Transition based from User location
-        if ((user.getX() == -38) && (user.getY() <= 271 || user.getY() >= 201)) {
-            user.setX(user.getX() + 1);
-            user.setY(user.getY());
+        //Transition based from Character location
+        if ((character.getX() == -38) && (character.getY() <= 271 || character.getY() >= 201)) {
+            character.setX(character.getX() + 1);
+            character.setY(character.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
-        //Transition based from User location
-        if ((user.getX() == 520) && (user.getY() <= 299 || user.getY() >= 194)) {
-            user.setX(user.getX() - 1);
-            user.setY(user.getY());
+        //Transition based from Character location
+        if ((character.getX() == 520) && (character.getY() <= 299 || character.getY() >= 194)) {
+            character.setX(character.getX() - 1);
+            character.setY(character.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
     }
