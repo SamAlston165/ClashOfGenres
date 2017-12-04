@@ -1,4 +1,4 @@
-package Main;
+package DataManager;
 
 import Entity.Party;
 import com.mongodb.*;
