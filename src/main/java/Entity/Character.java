@@ -47,36 +47,62 @@ public class Character extends BasicGame {
         this.y = (int) y;
     }
 
-    public int getMovement() { return movement; }
+    public int getMovement() {
+        return movement;
+    }
 
-    public void setMovement(int movement) { this.movement = movement; }
+    public void setMovement(int movement) {
+        this.movement = movement;
+    }
 
-    public int getAttackRange() { return attackRange; }
+    public int getAttackRange() {
+        return attackRange;
+    }
 
-    public void setAttackRange(int attackRange) { this.attackRange = attackRange; }
+    public void setAttackRange(int attackRange) {
+        this.attackRange = attackRange;
+    }
 
-    public int getAvalible() { return available; }
+    public int getAvalible() {
+        return available;
+    }
 
     public void setAvalible(int a) {
         available = a;
         return;
     }
 
-    public int getDefense() { return defense; }
+    public int getDefense() {
+        return defense;
+    }
 
-    public void setDefense(int defense) { this.defense = defense; }
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
 
-    public int getAttack() { return attack; }
+    public int getAttack() {
+        return attack;
+    }
 
-    public void setAttack(int attack) { this.attack = attack; }
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
 
-    public int getMax_hp() { return max_hp; }
+    public int getMax_hp() {
+        return max_hp;
+    }
 
-    public void setMax_hp(int max_hp) { this.max_hp = max_hp; }
+    public void setMax_hp(int max_hp) {
+        this.max_hp = max_hp;
+    }
 
-    public int getCurrent_hp() { return current_hp; }
+    public int getCurrent_hp() {
+        return current_hp;
+    }
 
-    public void setCurrent_hp(int current_hp) { this.current_hp = current_hp; }
+    public void setCurrent_hp(int current_hp) {
+        this.current_hp = current_hp;
+    }
 
     //change health (attacked'-' or healed'+')
     public void changeHealth(int num) {
@@ -95,13 +121,21 @@ public class Character extends BasicGame {
         return;
     }
 
-    public int getLvl() { return lvl; }
+    public int getLvl() {
+        return lvl;
+    }
 
-    public void setLvl(int lvl) { this.lvl = lvl; }
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
 
-    public int getDeath() { return death; }
+    public int getDeath() {
+        return death;
+    }
 
-    public void setDeath(int death) { this.getDeath(); }
+    public void setDeath(int death) {
+        this.getDeath();
+    }
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
@@ -127,162 +161,26 @@ public class Character extends BasicGame {
 
         Input kbd = gameContainer.getInput();
 
-        //All Right boundaries
+        System.out.println("X: " + getX() + " Y: " + getY());
+
+        //Right movement
         if (kbd.isKeyDown(Input.KEY_RIGHT)) {
-
             x += 1;
-
-            //Detects collision on outer bounds
-            if(getX() == 585)
-            {
-                x -= 1;
-            }
-
-            //Left fence boundary
-            if((getX() == 54 && getY() <= 572) && (getX() == 54 && getY() >= 433))
-            {
-                x -= 1;
-            }
-
-            //Middle fence boundary
-            if((getX() == 215 && getY() <= 507) && (getX() == 215 && getY() >= 369))
-            {
-                x -= 1;
-            }
-
-
-            //Right fence boundary
-            if((getX() == 471 && getY() <= 586) && (getX() == 471 && getY() >= 462))
-            {
-                x -= 1;
-            }
-
-            //Left house boundary
-            if((getX() == 44 && getY() <= 228) && (getX() == 44 && getY() >= 103))
-            {
-                x -= 1;
-            }
-
-            //Right house boundary
-            if((getX() == 394 && getY() <= 228) && (getX() == 394 && getY() >= 105))
-            {
-                x -= 1;
-            }
-
         }
 
-        //All Bottom boundaries
+        //Down movement
         if (kbd.isKeyDown(Input.KEY_DOWN)) {
-
             y += 1;
-
-            //Detects collision on outer bounds
-            if(getY() == 587)
-            {
-                y -= 1;
-            }
-
-            //Left fence boundary
-            if ((getY() == 427 && getX() <= 179) && (getY() == 427 && getX() >= 60))
-            {
-                y -=1;
-            }
-
-            //Middle fence boundary
-            if ((getY() == 360 && getX() <= 436) && (getY() == 360 && getX() >= 221))
-            {
-                y -=1;
-            }
-
-            //Right fence boundary
-            if ((getY() == 459 && getX() <= 584) && (getY() == 459 && getX() >= 473))
-            {
-                y -=1;
-            }
-
-            //Left house boundary
-            if ((getY() == 42 && getX() <= 194) && (getY() == 42 && getX() >= 42))
-            {
-                y -=1;
-            }
-
-            //Right house boundary
-            if ((getY() == 42 && getX() <= 547) && (getY() == 42 && getX() >= 389))
-            {
-                y -=1;
-            }
         }
 
-        //All top boundaries (Right fence does not contain boundaries)
+        //Up movement
         if (kbd.isKeyDown(Input.KEY_UP)) {
-
             y -= 1;
-
-            //Detects collision on outer bounds
-            if(getY() == 31)
-            {
-                y += 1;
-            }
-
-            //Left fence boundary
-            if((getY() == 576 && getX() <= 179) && (getY() == 576 && getX() >= 60))
-            {
-                y += 1;
-            }
-
-            //Middle fence boundary
-            if((getY() == 513 && getX() <= 434) && (getY() == 513 && getX() >= 220))
-            {
-                y += 1;
-            }
-
-            //Left house boundary
-            if((getY() == 256 && getX() <= 163) && (getY() == 256 && getX() >= 70))
-            {
-                y += 1;
-            }
-
-            //Right house boundary
-            if((getY() == 256 && getX() <= 518) && (getY() == 256 && getX() >= 420))
-            {
-                y += 1;
-            }
         }
 
-        //All left boundaries (Right fence does not contain boundaries)
+        //Left movement
         if (kbd.isKeyDown(Input.KEY_LEFT)) {
-
             x -= 1;
-
-            //Detects collision on outer bounds
-            if(getX() == 33)
-            {
-                x += 1;
-            }
-
-            //Left fence boundary
-            if((getX() == 183 && getY() <= 572) && (getX() == 183 && getY() >= 433))
-            {
-                x +=1;
-            }
-
-            //Middle fence boundary
-            if((getX() == 440 && getY() <= 505) && (getX() == 440 && getY() >= 368))
-            {
-                x +=1;
-            }
-
-            //Left house boundary
-            if((getX() == 191 && getY() <= 230) && (getX() == 191 && getY() >= 106))
-            {
-                x +=1;
-            }
-
-            //Right house boundary
-            if((getX() == 543 && getY() <= 230) && (getX() == 543 && getY() >= 106))
-            {
-                x +=1;
-            }
         }
 
         a.update(i);

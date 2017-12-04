@@ -66,6 +66,8 @@ public class BattleMap extends BasicGameState {
         //Gets user coordinates and updates the user
         kbd.setX(kbd.getX());
         kbd.setY(kbd.getY());
+
+        //Int contains duration of animation
         kbd.update(gameContainer, 0);
 
         //Transition button to Town Map
@@ -81,6 +83,26 @@ public class BattleMap extends BasicGameState {
         //Transition button to exit game
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
             System.exit(0);
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getX() == 585) {
+            kbd.x -= 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getY() == 587) {
+            kbd.y -= 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getY() == 31) {
+            kbd.y += 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getX() == 33) {
+            kbd.x += 1;
         }
 
         //Transition based from Character location

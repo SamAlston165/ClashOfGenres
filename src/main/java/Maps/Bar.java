@@ -13,7 +13,7 @@ public class Bar extends BasicGameState {
     private Image bar;
 
     //Character object
-    private Character character;
+    private Character kbd;
 
     //Default Constructor matching superclass
     public Bar() {
@@ -32,10 +32,10 @@ public class Bar extends BasicGameState {
         bar = new Image("Res/Bar.png");
 
         //Character reference
-        character = new Character();
+        kbd = new Character();
 
         //Initializes Character
-        character.init(gameContainer);
+        kbd.init(gameContainer);
 
     }
 
@@ -46,7 +46,7 @@ public class Bar extends BasicGameState {
         bar.draw();
 
         //Draws Character
-        character.render(gameContainer, graphics);
+        kbd.render(gameContainer, graphics);
 
         //Displays Bar Map string
         graphics.drawString("Bar", 270, 400);
@@ -59,9 +59,11 @@ public class Bar extends BasicGameState {
         Input input = gameContainer.getInput();
 
         //Gets character coordinates and updates the character
-        character.setX(character.getX());
-        character.setY(character.getY());
-        character.update(gameContainer, 0);
+        kbd.setX(kbd.getX());
+        kbd.setY(kbd.getY());
+
+        //Int contains duration of animation
+        kbd.update(gameContainer, 0);
 
 
         //Transition button to Town Map
@@ -79,7 +81,27 @@ public class Bar extends BasicGameState {
             System.exit(0);
         }
 
-        //Transition based from Character location
+        //Detects collision on outer bounds
+        if (kbd.getX() == 585) {
+            kbd.x -= 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getY() == 587) {
+            kbd.y -= 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getY() == 31) {
+            kbd.y += 1;
+        }
+
+        //Detects collision on outer bounds
+        if (kbd.getX() == 33) {
+            kbd.x += 1;
+        }
+
+        /*//Transition based from Character location
         if ((character.getX() == -38) && (character.getY() <= 271 || character.getY() >= 201)) {
             character.setX(character.getX() + 1);
             character.setY(character.getY());
@@ -91,6 +113,6 @@ public class Bar extends BasicGameState {
             character.setX(character.getX() - 1);
             character.setY(character.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
-        }
+        }*/
     }
 }
