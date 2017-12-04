@@ -16,7 +16,7 @@ public class TownMap extends BasicGameState {
     private Character kbd;
 
     //Pause Menu t/f
-    Boolean quit;
+    private Boolean quit;
 
     //Default Constructor matching superclass
     public TownMap() {
@@ -88,7 +88,7 @@ public class TownMap extends BasicGameState {
 
 
         //Display Pause Menu
-        if(quit == true)
+        if(quit)
         {
             graphics.setColor(Color.black);
             graphics.fillRect(180, 200, 280, 240);
@@ -98,7 +98,7 @@ public class TownMap extends BasicGameState {
             graphics.drawString("Quit   ( Q )", 250, 300);
             graphics.drawString("", 250, 350);
             //Clears Pause Menu
-            if(quit == false)
+            if(!quit)
             {
                 graphics.clear();
             }
@@ -126,7 +126,7 @@ public class TownMap extends BasicGameState {
             stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
         }
 
-        if(quit == true)
+        if(quit)
         {
             if(input.isKeyPressed(Input.KEY_ESCAPE))
             {
@@ -139,7 +139,7 @@ public class TownMap extends BasicGameState {
         }
 
         //Transition button to exit game
-        if (input.isKeyPressed(Input.KEY_ESCAPE) && quit == false) {
+        if (input.isKeyPressed(Input.KEY_ESCAPE) && !quit) {
             quit = true;
         }
 
@@ -276,7 +276,7 @@ public class TownMap extends BasicGameState {
         } //else if (choice == JOptionPane.NO_OPTION) {
         //stateBasedGame.getCurrentState();
 
-        input = null;
+        //input = null;
     }
 
 }
