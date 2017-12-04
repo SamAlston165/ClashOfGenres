@@ -23,5 +23,9 @@ hs_err_pid*
 
 .idea/workspace.xml
 
+pom.xml
+
+.gitignore
+
 project.iml
 

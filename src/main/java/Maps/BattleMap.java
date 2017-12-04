@@ -7,6 +7,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class BattleMap extends BasicGameState {
@@ -33,7 +35,7 @@ public class BattleMap extends BasicGameState {
     {
         //userTeam =
 
-        enemyTeam = createEnemy(userTeam);
+        //enemyTeam = createEnemy(userTeam);
 
     }
 
@@ -150,8 +152,9 @@ public class BattleMap extends BasicGameState {
     private static Party createEnemy(Party userT)
     {
         Party enemyT = new Party();
+        ArrayList<Character> teamA = userT.getParty();
 
-        int numOfEn = userT.party.size();
+        int numOfEn = teamA.size();
         int i = 0; int x = 0;
         Random rando = new Random();
 
