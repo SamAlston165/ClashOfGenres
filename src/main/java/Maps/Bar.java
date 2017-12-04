@@ -12,12 +12,19 @@ public class Bar extends BasicGameState {
     //Bar map image
     private Image bar;
 
+    boolean quit = false;
     //Character object
     private Character kbd;
 
     //Default Constructor matching superclass
     public Bar() {
         super();
+    }
+
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException
+    {
+
     }
 
     @Override
@@ -49,7 +56,24 @@ public class Bar extends BasicGameState {
         kbd.render(gameContainer, graphics);
 
         //Displays Bar Map string
-        graphics.drawString("Bar", 270, 400);
+       // graphics.drawString("Bar", 270, 400);
+
+        //Display Pause Menu
+        if(quit == true)
+        {
+            graphics.setColor(Color.black);
+            graphics.fillRect(180, 200, 280, 240);
+            graphics.setColor(Color.white);
+            graphics.drawRect(180, 200, 280, 240);
+            graphics.drawString("Resume (ESC)", 250, 250);
+            graphics.drawString("Quit   ( Q )", 250, 300);
+            graphics.drawString("", 250, 350);
+            //Clears Pause Menu
+            if(quit == false)
+            {
+                graphics.clear();
+            }
+        }
     }
 
     @Override
@@ -67,18 +91,30 @@ public class Bar extends BasicGameState {
 
 
         //Transition button to Town Map
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
+        if (input.isKeyDown(Input.KEY_ENTER)) {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
         //Transition button to Town Map
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
+        if (input.isKeyDown(Input.KEY_SPACE)) {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
+        if(quit == true)
+        {
+            if(input.isKeyPressed(Input.KEY_ESCAPE))
+            {
+                quit = false;
+            }
+            if(input.isKeyDown(Input.KEY_Q))
+            {
+                System.exit(0);
+            }
+        }
+
         //Transition button to exit game
-        if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-            System.exit(0);
+        if (input.isKeyDown(Input.KEY_ESCAPE) && quit == false) {
+            quit = true;
         }
 
         //Detects collision on outer bounds

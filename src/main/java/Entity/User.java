@@ -9,15 +9,15 @@ public class User extends BasicGame {
     public float x = 194;
     //Animation y coordinate
     public float y = 243;
-    //private String race;
-    //private ClassType classType;
+    private String race;
+    //private Class classType;
     private int max_hp = 100;
     private int current_hp;
     private int lvl;
     private int maxLvl = 50;
     private int attack;
     private int defense;
-    //private Weapons weapon;
+    private Weapons weapon;
     private int movement;
     private int attackRange;
     private int available;

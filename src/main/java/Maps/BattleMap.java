@@ -21,6 +21,12 @@ public class BattleMap extends BasicGameState {
     }
 
     @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException
+    {
+
+    }
+
+    @Override
     public int getID() {
         return 3;
     }
@@ -71,17 +77,17 @@ public class BattleMap extends BasicGameState {
         kbd.update(gameContainer, 0);
 
         //Transition button to Town Map
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
+        if (input.isKeyDown(Input.KEY_ENTER)) {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
         //Transition button to Town Map
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
+        if (input.isKeyDown(Input.KEY_SPACE)) {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
         //Transition button to exit game
-        if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+        if (input.isKeyDown(Input.KEY_ESCAPE)) {
             System.exit(0);
         }
 
