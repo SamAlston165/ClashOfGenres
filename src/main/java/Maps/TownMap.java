@@ -15,9 +15,18 @@ public class TownMap extends BasicGameState {
     //Character object
     private Character kbd;
 
+    //Pause Menu t/f
+    Boolean quit;
+
     //Default Constructor matching superclass
     public TownMap() {
         super();
+    }
+
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException
+    {
+
     }
 
 
@@ -37,6 +46,8 @@ public class TownMap extends BasicGameState {
 
         //Initializes Character
         kbd.init(gameContainer);
+
+        quit = false;
     }
 
     @Override
@@ -49,7 +60,49 @@ public class TownMap extends BasicGameState {
         kbd.render(gameContainer, graphics);
 
         //Displays Town Map string
-        graphics.drawString("Town Map", 270, 400);
+       // graphics.drawString("Town Map", 270, 400);
+
+        //Display Bar Text
+        if((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 245 && kbd.getY() < 275 ))
+        {
+            graphics.drawString("Press Enter togo Bar", 60, 280);
+
+            //Clears bar text
+            if(!((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 245 && kbd.getY() < 275 )))
+            {
+                graphics.clear();
+            }
+        }
+
+        //Display Shop Text
+        if((kbd.getX() < 500 && kbd.getX() > 445) && (kbd.getY() > 245 && kbd.getY() < 275 ))
+        {
+            graphics.drawString("Press Enter togo Shop", 390, 280);
+
+            //Clears shop text
+            if(!((kbd.getX() < 500 && kbd.getX() > 445) && (kbd.getY() > 245 && kbd.getY() < 275 )))
+            {
+                graphics.clear();
+            }
+        }
+
+
+        //Display Pause Menu
+        if(quit == true)
+        {
+            graphics.setColor(Color.black);
+            graphics.fillRect(180, 200, 280, 240);
+            graphics.setColor(Color.white);
+            graphics.drawRect(180, 200, 280, 240);
+            graphics.drawString("Resume (ESC)", 250, 250);
+            graphics.drawString("Quit   ( Q )", 250, 300);
+            graphics.drawString("", 250, 350);
+            //Clears Pause Menu
+            if(quit == false)
+            {
+                graphics.clear();
+            }
+        }
 
     }
 
@@ -64,19 +117,42 @@ public class TownMap extends BasicGameState {
         kbd.update(gameContainer, 0);
 
         //Transition button to Bar
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
-            stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
-        }
+//        if (input.isKeyPressed(Input.KEY_ENTER)) {
+//            stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
+//        }
 
         //Transition button to Battle Map
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
         }
 
-        //Transition button to exit game
-        if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-            System.exit(0);
+        if(quit == true)
+        {
+            if(input.isKeyPressed(Input.KEY_ESCAPE))
+            {
+                quit = false;
+            }
+            if(input.isKeyDown(Input.KEY_Q))
+            {
+                System.exit(0);
+            }
         }
+
+        //Transition button to exit game
+        if (input.isKeyPressed(Input.KEY_ESCAPE) && quit == false) {
+            quit = true;
+        }
+
+
+        if((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 255 && kbd.getY() < 275 ))
+        {
+            if(input.isKeyDown(Input.KEY_ENTER))
+            {
+                stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
+            }
+        }
+
+
 
         //Detects collision on outer bounds
         if (kbd.getX() == 585) {
@@ -194,8 +270,13 @@ public class TownMap extends BasicGameState {
             //if (choice == JOptionPane.YES_OPTION) {
             //  kbd.setX(kbd.getX() - 1);
             //  kbd.setY(kbd.getY());
-            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+            if(input.isKeyDown(Input.KEY_ENTER)) {
+                stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+            }
         } //else if (choice == JOptionPane.NO_OPTION) {
         //stateBasedGame.getCurrentState();
+
+        input = null;
     }
+
 }
