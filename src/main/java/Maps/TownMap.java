@@ -111,7 +111,8 @@ public class TownMap extends BasicGameState {
             graphics.setColor(Color.white);
             graphics.drawRect(180, 200, 280, 240);
             graphics.drawString("Welcome to Item Shop!",230,200);
-            graphics.drawString("Potion    ( P )", 250, 250);
+            graphics.drawString("Potion x 1( P )", 250, 250);
+            graphics.drawString("Armor x 1 ( A )", 250, 275);
             graphics.drawString("Exit Menu ( Q )", 250, 300);
             graphics.drawString("", 250, 350);
 
@@ -162,6 +163,7 @@ public class TownMap extends BasicGameState {
             if(input.isKeyDown(Input.KEY_P))
             {
                //Needs add potion method to array list
+                //Needs add armor method to array list
                 // Deduct money method
             }
         }

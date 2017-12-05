@@ -1,8 +1,18 @@
 package Entity;
 
-public class Equipment {
+public class Equipment extends Item {
 
-    private int armorBonus;
+    private static final int armorBonus = 50;
 
+    public Equipment()
+    {
+        super();
+        setEffectiveness(armorBonus);
+    }
 
+    @Override
+    public void resolveEffect(Character target) {
+        target.changeHealth(this.getEffectiveness());
+        return;
+    }
 }
