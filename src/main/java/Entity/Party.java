@@ -10,11 +10,18 @@ public class Party {
     private ArrayList<Item> inventory;
     private int money;
 
-    //make a new party with 3 characters and starting money
+    //make a new party of characters and starting money
     public Party(){
         setMoney(startingMoney);
         setParty(new ArrayList<Character>());
         setInventory(new ArrayList<Item>());
+    }
+    //Constructor for saved files
+    public Party(ArrayList<Character> party, ArrayList<Item> inventory, int money)
+    {
+        setMoney(money);
+        setParty(party);
+        setInventory(inventory);
     }
 
     public int getMoney() {
@@ -40,4 +47,6 @@ public class Party {
     public void setParty(ArrayList<Character> party) {
         this.party = party;
     }
+
+
 }
