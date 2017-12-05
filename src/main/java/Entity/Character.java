@@ -17,7 +17,8 @@ public class Character extends BasicGame {
     private int maxLvl = 50;
     private int attack;
     //private int defense;
-    //private Weapons weapon;
+    private int weapon;
+    private String weaponString;
     private int movement;
     private int attackRange;
     //What do
@@ -40,7 +41,7 @@ public class Character extends BasicGame {
         super("");
         this.lvl = 1;
         this.max_hp = 100;
-        this.attack = 5;
+        this.attack = 20;
         this.movement = 20;
         this.attackRange = 25;
         this.imageString = "Res/User.png";
@@ -48,10 +49,12 @@ public class Character extends BasicGame {
         setAvailableAttk(true);
         setAvailableItem(true);
         setDead(false);
+        this.weapon = 10;
+        this.weaponString = "Bronze Sword";
 
     }
     //load data constructor
-    public Character(int max_hp, int lvl, int attack, int defense, int movement, int attackRange, String imageString)
+    public Character(int max_hp, int lvl, int attack, int defense, int movement, int attackRange, String imageString, int weapon, String weaponString)
     {
         super("");
         this.lvl = lvl;
@@ -64,6 +67,8 @@ public class Character extends BasicGame {
         setAvailableAttk(true);
         setAvailableItem(true);
         setDead(false);
+        this.weapon = weapon;
+        this.weaponString = weaponString;
     }
 
     /*

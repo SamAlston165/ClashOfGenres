@@ -2,6 +2,7 @@ package Main;
 
 import Maps.Bar;
 import Maps.BattleMap;
+import Maps.MainMenu;
 import Maps.TownMap;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
