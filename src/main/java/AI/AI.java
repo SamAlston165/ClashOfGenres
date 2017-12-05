@@ -22,7 +22,7 @@ public class AI {
         int threat;
         boolean range;
 
-        //RUN THROUGH EACH Character IN THE TARGET GROUP TO COLLECT RELEVANT INFO
+        //RUN THROUGH EACH USER IN THE TARGET GROUP TO COLLECT RELEVANT INFO
         for(Character target : targets) {
             distance = getDistance(enemy, target);
             range = inRange(enemy, distance);
