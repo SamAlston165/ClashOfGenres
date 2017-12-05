@@ -4,32 +4,34 @@ import org.newdawn.slick.*;
 
 public class Character extends BasicGame {
 
-    private static final int death = 0;
     //Animation x coordinate
     public float x = 194;
     //Animation y coordinate
     public float y = 243;
-    //private String race;
-    //private ClassType classType;
+
+    private static final int death = 0;
     private int max_hp;
     private int current_hp;
     private int lvl;
     private int maxLvl = 50;
     private int attack;
-    //private int defense;
     private int weapon;
     private String weaponString;
     private int movement;
     private int attackRange;
+
     //What do
     private Boolean availableMove;
     private Boolean availableAttk;
     private Boolean availableItem;
     private Boolean dead;
+
     //Animation variable
     private Animation a;
+
     //Character Image
     private Image i;
+
     //character image location
     private String imageString;
 
@@ -44,7 +46,7 @@ public class Character extends BasicGame {
         this.attack = 20;
         this.movement = 20;
         this.attackRange = 25;
-        this.imageString = "Res/User.png";
+        this.setImageString("Res/User.png");
         setAvailableMove(true);
         setAvailableAttk(true);
         setAvailableItem(true);
@@ -62,7 +64,7 @@ public class Character extends BasicGame {
         this.attack = attack;
         this.movement = movement;
         this.attackRange = attackRange;
-        this.imageString = imageString;
+        this.setImageString(imageString);
         setAvailableMove(true);
         setAvailableAttk(true);
         setAvailableItem(true);
@@ -154,6 +156,10 @@ public class Character extends BasicGame {
         this.lvl = lvl;
     }
 
+    public String getImageString() { return imageString; }
+
+    public void setImageString(String imageString) { this.imageString = imageString; }
+
     /*
             Functional Methods for Data
      */
@@ -199,7 +205,7 @@ public class Character extends BasicGame {
     public void init(GameContainer gameContainer) throws SlickException {
 
         //Character reference
-        i = new Image(imageString);
+        i = new Image(getImageString());
         a = getAnimation(i, 20, 20, 20, 20, 27, 100);
 
         //Gets coordinates of Character
@@ -259,6 +265,5 @@ public class Character extends BasicGame {
         }
         return a;
     }
-
 
 }
