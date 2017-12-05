@@ -24,6 +24,30 @@ public class Party {
         setInventory(inventory);
     }
 
+    public Party(int fof) {
+        ArrayList<Character> team = new ArrayList<Character>();
+        if (fof == 0) {
+            Knight c = new Knight();
+            team.add(c);
+            team.add(new Archer("friend"));
+            team.add(new Knight("friend"));
+            team.add(new Archer("friend"));
+            inventory = new ArrayList<Item>();
+            inventory.add(new HealthPotion());
+        }
+        else if (fof == 1)
+        {
+            team.add(new Knight("foe"));
+            team.add(new Archer("foe"));
+            team.add(new Knight("foe"));
+            team.add(new Archer("foe"));
+            inventory = new ArrayList<Item>();
+        }
+        party = team;
+        money = 1000;
+
+    }
+
     public int getMoney() {
         return money;
     }

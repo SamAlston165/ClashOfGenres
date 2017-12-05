@@ -17,15 +17,21 @@ public class BattleMap extends BasicGameState {
 
     //Character object / Party
     private Character chosenC;
+    private Character chosenT;
     private Party playerT;
     private Party enemyT;
+    private ArrayList<Character> tester;
 
     //Pause Variable
     private boolean quit;
-
+    private boolean action;
     //Mouse tracking
     private int mouseX;
     private int mouseY;
+    private int fakeX;
+    private int fakeY;
+
+
 
     //Variable for loops in class
     private int i;
@@ -53,11 +59,27 @@ public class BattleMap extends BasicGameState {
         battleMap = new Image("Res/BattleMap.png");
 
         //Character reference
-        chosenC = new Character();
+        playerT = new Party(0);
+        enemyT = new Party(1);
+        chosenC = playerT.getParty().get(0);
+        chosenT = playerT.getParty().get(0);
         i = 0;
+        action = false;
+        quit = false;
 
-        //Initializes Character
-        chosenC.init(gameContainer);
+        //Initializes Character Teams
+        for(i = 0; i < playerT.getPartySize(); i++)
+        {
+            playerT.getParty().get(i).setY((40 * (i * 2)) + 10 + 40);
+            playerT.getParty().get(i).setX((40 *( (i + 1) % 2 )) + 10 + 40);
+            playerT.getParty().get(i).init(gameContainer);
+        }
+        for(i = 0; i < enemyT.getPartySize(); i++)
+        {
+            enemyT.getParty().get(i).setY((40 * (i * 2)) + 10 + 40);
+            enemyT.getParty().get(i).setX((600 - (40 *( (i + 1) % 2))) + 10 - 40);
+            enemyT.getParty().get(i).init(gameContainer);
+        }
 
 
     }
@@ -72,7 +94,15 @@ public class BattleMap extends BasicGameState {
         graphics.setColor(Color.lightGray);
 
         //Draws Character
-        chosenC.render(gameContainer, graphics);
+        //chosenC.render(gameContainer, graphics);
+        playerT.getParty().get(0).render(gameContainer, graphics);
+        playerT.getParty().get(1).render(gameContainer, graphics);
+        playerT.getParty().get(2).render(gameContainer, graphics);
+        playerT.getParty().get(3).render(gameContainer, graphics);
+        enemyT.getParty().get(0).render(gameContainer, graphics);
+        enemyT.getParty().get(1).render(gameContainer, graphics);
+        enemyT.getParty().get(2).render(gameContainer, graphics);
+        enemyT.getParty().get(3).render(gameContainer, graphics);
 
         //light rectangle for bottom screen menu
         graphics.fillRect(0, 440, 640, 200);
@@ -88,6 +118,15 @@ public class BattleMap extends BasicGameState {
         graphics.drawString("Character Health:   " + chosenC.getCurrent_hp() +"/" + chosenC.getMax_hp(), 25, 500);
         graphics.drawString("Character Lvl:    " + chosenC.getLvl(), 340, 450);
         graphics.drawString("Character Attack: " + chosenC.getAttack(), 340, 500);
+        graphics.drawRect(35 ,550, 110, 50);
+        graphics.drawString("  Move  ", 55, 570);
+        graphics.drawRect(185 ,550, 110, 50);
+        graphics.drawString(" Attack ", 205, 570);
+        graphics.drawRect(335 ,550, 110, 50);
+        graphics.drawString("  Item  ", 355, 570);
+        graphics.drawRect( 485,550, 110, 50);
+        graphics.drawString("End Turn", 505, 570);
+
 
         if(mouseY < 440)
         {
@@ -124,6 +163,28 @@ public class BattleMap extends BasicGameState {
         //Mouse input
         mouseX = input.getMouseX();
         mouseY = input.getMouseY();
+        fakeX = (40 * (mouseX / 40)) + 10;
+        fakeY = (40 * (mouseY / 40)) + 10;
+
+        if(!action && input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+        {
+            if(playerT.getParty().get(0).getX() == fakeX)
+            {
+                if(playerT.getParty().get(0).getY() == fakeY) { chosenC = playerT.getParty().get(0); }
+            }
+            else if(playerT.getParty().get(1).getX() == fakeX)
+            {
+                if(playerT.getParty().get(1).getY() == fakeY) { chosenC = playerT.getParty().get(1); }
+            }
+            if(playerT.getParty().get(2).getX() == fakeX)
+            {
+                if(playerT.getParty().get(2).getY() == fakeY) { chosenC = playerT.getParty().get(2); }
+            }
+            if(playerT.getParty().get(3).getX() == fakeX)
+            {
+                if(playerT.getParty().get(3).getY() == fakeY) { chosenC = playerT.getParty().get(3); }
+            }
+        }
 
 
         //for(i = 0; i < .getPartySize(); i++)
@@ -208,6 +269,20 @@ public class BattleMap extends BasicGameState {
             chosenC.setX(chosenC.getX() - 1);
             chosenC.setY(chosenC.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
+        }
+
+        tester = playerT.getParty();
+        if(tester.get(0).getDead() && tester.get(2).getDead() && tester.get(2).getDead() && tester.get(3).getDead())
+        {
+            loss();
+            if(input.isKeyDown(Input.KEY_ENTER))
+            {
+                stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
+            }
+            if(input.isKeyDown(Input.KEY_Q))
+            {
+                System.exit(0);
+            }
         }
     }
 
