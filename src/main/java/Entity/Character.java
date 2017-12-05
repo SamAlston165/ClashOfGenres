@@ -1,5 +1,6 @@
 package Entity;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.newdawn.slick.*;
 
 public class Character extends BasicGame {
@@ -11,7 +12,7 @@ public class Character extends BasicGame {
     public float y = 243;
     //private String race;
     //private ClassType classType;
-    private int max_hp = 100;
+    private int max_hp;
     private int current_hp;
     private int lvl;
     private int maxLvl = 50;
@@ -20,15 +21,38 @@ public class Character extends BasicGame {
     //private Weapons weapon;
     private int movement;
     private int attackRange;
-    private int available;
+    //What do
+    private Boolean availableMove;
+    private Boolean availableAttk;
+    private Boolean availableItem;
     //Animation variable
     private Animation a;
     //Character Image
     private Image i;
+    //character image location
+    private String imageString;
 
     //Default Constructor
     public Character() {
         super("");
+        this.lvl = 1;
+        this.max_hp = 100;
+        this.attack = 5;
+        this.movement = 20;
+        this.attackRange = 25;
+        this.imageString = "Res/Mario.png";
+
+    }
+
+    public Character(int max_hp, int lvl, int attack, int defense, int movement, int attackRange, String imageString)
+    {
+        super("");
+        this.lvl = lvl;
+        this.max_hp = max_hp;
+        this.attack = attack;
+        this.movement = movement;
+        this.attackRange = attackRange;
+        this.imageString = imageString;
     }
 
     public int getX() {
@@ -63,14 +87,7 @@ public class Character extends BasicGame {
         this.attackRange = attackRange;
     }
 
-    public int getAvalible() {
-        return available;
-    }
 
-    public void setAvalible(int a) {
-        available = a;
-        return;
-    }
 
     public int getDefense() {
         return defense;
@@ -110,7 +127,7 @@ public class Character extends BasicGame {
 
         //check if dead
         if (current_hp <= death) {
-            setAvalible(death);
+            //setAvalible(death);
             return;
         }
         //Prevents hp going above max
@@ -141,7 +158,7 @@ public class Character extends BasicGame {
     public void init(GameContainer gameContainer) throws SlickException {
 
         //Character reference
-        i = new Image("Res/Mario.png");
+        i = new Image(imageString);
         a = getAnimation(i, 20, 20, 20, 20, 27, 100);
 
         //Gets coordinates of Character
@@ -161,7 +178,7 @@ public class Character extends BasicGame {
 
         Input kbd = gameContainer.getInput();
 
-        System.out.println("X: " + getX() + " Y: " + getY());
+        //System.out.println("X: " + getX() + " Y: " + getY());
 
         //Right movement
         if (kbd.isKeyDown(Input.KEY_RIGHT)) {
