@@ -23,7 +23,7 @@ public class MainMenu extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         //Main menu reference
-        mainMenu = new Image("Res/MainMenu.png");
+        mainMenu = new Image("Res/MainMenu2.png");
 
         //Background music in loop
         //    music = new Music("Res/*Music Reference*");
@@ -37,10 +37,10 @@ public class MainMenu extends BasicGameState {
         mainMenu.draw();
 
         //Sets graphics to color black
-        graphics.setColor(Color.black);
+        graphics.setColor(Color.white);
 
         //Displays Main menu string
-        graphics.drawString("Play: \nPress Enter", 270, 400);
+        graphics.drawString("Play: \nPress Enter", 270, 450);
 
         //Displays Main menu string
         graphics.drawString("Exit: \nPress ESC", 270, 500);

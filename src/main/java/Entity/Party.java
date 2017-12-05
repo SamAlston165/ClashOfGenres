@@ -48,5 +48,19 @@ public class Party {
         this.party = party;
     }
 
+    public void addToParty(Character newMem)
+    {
+        if(party.size() <= 4)
+        {
+            party.add(newMem);
+        }
+    }
 
+    public void rmPartyMember(Character oldMem)
+    {
+        if(party.size() > 2)
+        {
+            party.remove(oldMem);
+        }
+    }
 }

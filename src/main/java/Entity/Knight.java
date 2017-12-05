@@ -15,7 +15,6 @@ public class Knight extends Character{
         this.setMax_hp(knightHPBase);
         this.setCurrent_hp(knightHPBase);
         this.setAttack(knightAttackBase);
-        this.setDefense(knightDefenseBase);
         this.setMovement(knightMovementBase);
         this.setAttackRange(knightRangeBase);
 

@@ -1,6 +1,5 @@
 package Entity;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.newdawn.slick.*;
 
 public class Character extends BasicGame {
@@ -17,7 +16,7 @@ public class Character extends BasicGame {
     private int lvl;
     private int maxLvl = 50;
     private int attack;
-    private int defense;
+    //private int defense;
     //private Weapons weapon;
     private int movement;
     private int attackRange;
@@ -25,6 +24,7 @@ public class Character extends BasicGame {
     private Boolean availableMove;
     private Boolean availableAttk;
     private Boolean availableItem;
+    private Boolean dead;
     //Animation variable
     private Animation a;
     //Character Image
@@ -32,6 +32,9 @@ public class Character extends BasicGame {
     //character image location
     private String imageString;
 
+    /*
+        Constructor Block
+     */
     //Default Constructor
     public Character() {
         super("");
@@ -41,9 +44,13 @@ public class Character extends BasicGame {
         this.movement = 20;
         this.attackRange = 25;
         this.imageString = "Res/Mario.png";
+        setAvailableMove(true);
+        setAvailableAttk(true);
+        setAvailableItem(true);
+        setDead(false);
 
     }
-
+    //load data constructor
     public Character(int max_hp, int lvl, int attack, int defense, int movement, int attackRange, String imageString)
     {
         super("");
@@ -53,8 +60,15 @@ public class Character extends BasicGame {
         this.movement = movement;
         this.attackRange = attackRange;
         this.imageString = imageString;
+        setAvailableMove(true);
+        setAvailableAttk(true);
+        setAvailableItem(true);
+        setDead(false);
     }
 
+    /*
+        Get/Set Block
+     */
     public int getX() {
         return (int) x;
     }
@@ -87,16 +101,6 @@ public class Character extends BasicGame {
         this.attackRange = attackRange;
     }
 
-
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
     public int getAttack() {
         return attack;
     }
@@ -121,13 +125,41 @@ public class Character extends BasicGame {
         this.current_hp = current_hp;
     }
 
+    public Boolean getAvailableMove() { return availableMove; }
+
+    public void setAvailableMove(Boolean availableMove) { this.availableMove = availableMove; }
+
+    public Boolean getAvailableAttk() { return availableAttk; }
+
+    public void setAvailableAttk(Boolean availableAttk) { this.availableAttk = availableAttk; }
+
+    public Boolean getAvailableItem() { return availableItem; }
+
+    public void setAvailableItem(Boolean availableItem) { this.availableItem = availableItem; }
+
+    public Boolean getDead() { return dead; }
+
+    public void setDead(Boolean dead) { this.dead = dead; }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
+
+    /*
+            Functional Methods for Data
+     */
+
     //change health (attacked'-' or healed'+')
     public void changeHealth(int num) {
         current_hp = current_hp + num;
 
         //check if dead
         if (current_hp <= death) {
-            //setAvalible(death);
+            setDead(true);
             return;
         }
         //Prevents hp going above max
@@ -138,22 +170,26 @@ public class Character extends BasicGame {
         return;
     }
 
-    public int getLvl() {
-        return lvl;
+    public void attackChar(Character target)
+    {
+        if(target.distanceFrom(getX(), getY()) > attackRange)
+        {
+            target.changeHealth(0 - (getAttack()));
+        }
     }
 
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
+    public double distanceFrom(int x, int y)
+    {
+        double dist = Math.sqrt(Math.pow((double)(x - getX()), 2) + Math.pow((double)(y - getY()), 2));
+        return(dist);
     }
 
-    public int getDeath() {
-        return death;
-    }
 
-    public void setDeath(int death) {
-        this.getDeath();
-    }
 
+
+    /*
+            Rendering Methods for Slick Stuff
+     */
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
 
@@ -218,4 +254,6 @@ public class Character extends BasicGame {
         }
         return a;
     }
+
+
 }
