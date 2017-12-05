@@ -2,29 +2,37 @@ package Entity;
 
 public class Knight extends Character{
 
-    //Base Health Points Variable
-    private static final int knightHealthPointsBase = 150;
-
-    //Base Attack Points Variable
-    private static final int knightAttackBase = 10;
-
-    //Base Defense Points Variable
-    private static final int knightDefenseBase = 20;
-
-    //Base Movement Points Variable
-    private static final int knightMovementBase = 2;
-
-    //Base Attack Range Variable
-    private static final int knightAttackRangeBase = 1;
+    //no magic numbers
+    private static final int knightHPBase = 150;
+    private static final int knightAttackBase = 40;
+    private static final int knightMovementBase = 160;
+    private static final int knightRangeBase = 40;
 
 
-    public Knight()
+    public Knight(){
+        super();
+        this.setMax_hp(knightHPBase);
+        this.setCurrent_hp(knightHPBase);
+        this.setAttack(knightAttackBase);
+        this.setMovement(knightMovementBase);
+        this.setAttackRange(knightRangeBase);
+    }
+    public Knight(String fof)
     {
-        setMax_hp(knightHealthPointsBase);
-        setCurrent_hp(knightHealthPointsBase);
-        setAttack(knightAttackBase);
-        setDefense(knightDefenseBase);
-        setMovement(knightMovementBase);
-        setAttackRange(knightAttackRangeBase);
+        super();
+        this.setMax_hp(knightHPBase);
+        this.setCurrent_hp(knightHPBase);
+        this.setAttack(knightAttackBase);
+        this.setMovement(knightMovementBase);
+        this.setAttackRange(knightRangeBase);
+
+        if(fof.compareToIgnoreCase("friend") == 0)
+        {
+            this.setImageString("Res/Fren_Knight.png");
+        }
+        else
+        {
+            this.setImageString("Res/Enemy_Knight.png");
+        }
     }
 }

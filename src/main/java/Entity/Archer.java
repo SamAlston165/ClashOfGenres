@@ -1,29 +1,39 @@
 package Entity;
 
-public class Archer extends Character
-{
-    //Base Health Points Variable
-    private static final int archerHealthPointsBase = 100;
+public class Archer extends Character {
 
-    //Base Attack Points Variable
+
+    //no magic numbers
+    private static final int archerHPBase = 90;
     private static final int archerAttackBase = 20;
+    private static final int archerMovementBase = 80;
+    private static final int archerRangeBase = 120;
 
-    //Base Defense Points Variable
-    private static final int archerDefenseBase = 12;
 
-    //Base Movement Points Variable
-    private static final int archerMovementBase = 4;
-
-    //Base Attack Range Variable
-    private static final int archerAttackRangeBase = 3;
-
-    public Archer()
+    public Archer(){
+        super();
+        this.setMax_hp(archerHPBase);
+        this.setCurrent_hp(archerHPBase);
+        this.setAttack(archerAttackBase);
+        this.setMovement(archerMovementBase);
+        this.setAttackRange(archerRangeBase);
+    }
+    public Archer(String fof)
     {
-        setMax_hp(archerHealthPointsBase);
-        setCurrent_hp(archerHealthPointsBase);
-        setAttack(archerAttackBase);
-        setDefense(archerDefenseBase);
-        setMovement(archerMovementBase);
-        setAttackRange(archerAttackRangeBase);
+        super();
+        this.setMax_hp(archerHPBase);
+        this.setCurrent_hp(archerHPBase);
+        this.setAttack(archerAttackBase);
+        this.setMovement(archerMovementBase);
+        this.setAttackRange(archerRangeBase);
+
+        if(fof.compareToIgnoreCase("friend") == 0)
+        {
+            this.setImageString("Res/Fren_Archer.png");
+        }
+        else
+        {
+            this.setImageString("Res/Enemy_Archer.png");
+        }
     }
 }
