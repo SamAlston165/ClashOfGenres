@@ -53,13 +53,22 @@ public class BattleMap extends BasicGameState {
         battleMap.draw();
 
         //Sets graphics to color white
-        graphics.setColor(Color.white);
+        graphics.setColor(Color.lightGray);
 
         //Draws Character
         kbd.render(gameContainer, graphics);
 
-        //Displays Battle Map string
-        graphics.drawString("Battle Map", 270, 400);
+        //light rectangle for bottom screen menu
+        graphics.fillRect(0, 440, 640, 200);
+
+        //reset to black graphics for text
+        graphics.setColor(Color.black);
+
+        //outer rectangle for design
+        graphics.drawRect(0, 440, 640, 200);
+
+        //sample text for now
+        graphics.drawString("insert menu stuff", 25, 500);
 
     }
 
@@ -92,22 +101,22 @@ public class BattleMap extends BasicGameState {
         }
 
         //Detects collision on outer bounds
-        if (kbd.getX() == 585) {
+        if (kbd.getX() == 640) {
             kbd.x -= 1;
         }
 
         //Detects collision on outer bounds
-        if (kbd.getY() == 587) {
+        if (kbd.getY() == 440) {
             kbd.y -= 1;
         }
 
         //Detects collision on outer bounds
-        if (kbd.getY() == 31) {
+        if (kbd.getY() == 0) {
             kbd.y += 1;
         }
 
         //Detects collision on outer bounds
-        if (kbd.getX() == 33) {
+        if (kbd.getX() == 0) {
             kbd.x += 1;
         }
 

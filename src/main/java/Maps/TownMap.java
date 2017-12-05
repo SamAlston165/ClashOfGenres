@@ -134,10 +134,10 @@ public class TownMap extends BasicGameState {
         //Int contains duration of animation
         kbd.update(gameContainer, 0);
 
-        //Universal Transition button to Battle Map
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
-            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
-        }
+//        //Universal Transition button to Battle Map
+//        if (input.isKeyPressed(Input.KEY_SPACE)) {
+//            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+//        }
 
         //Pause menu interaction
         if(quit)
