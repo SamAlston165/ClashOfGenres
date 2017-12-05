@@ -59,8 +59,6 @@ public class TownMap extends BasicGameState {
         //Draws Character
         kbd.render(gameContainer, graphics);
 
-        //Displays Town Map string
-       // graphics.drawString("Town Map", 270, 400);
 
         //Display Bar Text
         if((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 245 && kbd.getY() < 275 ))
@@ -101,9 +99,10 @@ public class TownMap extends BasicGameState {
         //Display Pause Menu
         if(quit)
         {
-            graphics.setColor(Color.black);
+            graphics.setColor(Color.lightGray);
             graphics.fillRect(180, 200, 280, 240);
-            graphics.setColor(Color.white);
+            graphics.setColor(Color.black);
+
             graphics.drawRect(180, 200, 280, 240);
             graphics.drawString("Resume (ESC)", 250, 250);
             graphics.drawString("Quit   ( Q )", 250, 300);
@@ -114,7 +113,7 @@ public class TownMap extends BasicGameState {
                 graphics.clear();
             }
         }
-        graphics.setColor(Color.black);
+        graphics.setColor(Color.white);
 
     }
 

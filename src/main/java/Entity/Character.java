@@ -43,7 +43,7 @@ public class Character extends BasicGame {
         this.attack = 5;
         this.movement = 20;
         this.attackRange = 25;
-        this.imageString = "Res/Mario.png";
+        this.imageString = "Res/User.png";
         setAvailableMove(true);
         setAvailableAttk(true);
         setAvailableItem(true);
