@@ -1,6 +1,9 @@
 package Entity;
 
+import Main.CharacterSelection;
 import org.newdawn.slick.*;
+
+import javax.swing.*;
 
 public class Character extends BasicGame {
 
@@ -11,69 +14,28 @@ public class Character extends BasicGame {
     public float y = 243;
     //private String race;
     //private ClassType classType;
-    private int max_hp;
+    private int max_hp = 100;
     private int current_hp;
     private int lvl;
     private int maxLvl = 50;
     private int attack;
-    //private int defense;
-    private int weapon;
-    private String weaponString;
+    private int defense;
+    //private Weapons weapon;
     private int movement;
     private int attackRange;
-    //What do
-    private Boolean availableMove;
-    private Boolean availableAttk;
-    private Boolean availableItem;
-    private Boolean dead;
+    private int available;
     //Animation variable
     private Animation a;
     //Character Image
     private Image i;
-    //character image location
-    private String imageString;
 
-    /*
-        Constructor Block
-     */
+    private CharacterSelection sam;
+
     //Default Constructor
     public Character() {
         super("");
-        this.lvl = 1;
-        this.max_hp = 100;
-        this.attack = 20;
-        this.movement = 20;
-        this.attackRange = 25;
-        this.imageString = "Res/User.png";
-        setAvailableMove(true);
-        setAvailableAttk(true);
-        setAvailableItem(true);
-        setDead(false);
-        this.weapon = 10;
-        this.weaponString = "Bronze Sword";
-
-    }
-    //load data constructor
-    public Character(int max_hp, int lvl, int attack, int defense, int movement, int attackRange, String imageString, int weapon, String weaponString)
-    {
-        super("");
-        this.lvl = lvl;
-        this.max_hp = max_hp;
-        this.attack = attack;
-        this.movement = movement;
-        this.attackRange = attackRange;
-        this.imageString = imageString;
-        setAvailableMove(true);
-        setAvailableAttk(true);
-        setAvailableItem(true);
-        setDead(false);
-        this.weapon = weapon;
-        this.weaponString = weaponString;
     }
 
-    /*
-        Get/Set Block
-     */
     public int getX() {
         return (int) x;
     }
@@ -106,6 +68,23 @@ public class Character extends BasicGame {
         this.attackRange = attackRange;
     }
 
+    public int getAvalible() {
+        return available;
+    }
+
+    public void setAvalible(int a) {
+        available = a;
+        return;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
     public int getAttack() {
         return attack;
     }
@@ -130,41 +109,13 @@ public class Character extends BasicGame {
         this.current_hp = current_hp;
     }
 
-    public Boolean getAvailableMove() { return availableMove; }
-
-    public void setAvailableMove(Boolean availableMove) { this.availableMove = availableMove; }
-
-    public Boolean getAvailableAttk() { return availableAttk; }
-
-    public void setAvailableAttk(Boolean availableAttk) { this.availableAttk = availableAttk; }
-
-    public Boolean getAvailableItem() { return availableItem; }
-
-    public void setAvailableItem(Boolean availableItem) { this.availableItem = availableItem; }
-
-    public Boolean getDead() { return dead; }
-
-    public void setDead(Boolean dead) { this.dead = dead; }
-
-    public int getLvl() {
-        return lvl;
-    }
-
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
-
-    /*
-            Functional Methods for Data
-     */
-
     //change health (attacked'-' or healed'+')
     public void changeHealth(int num) {
         current_hp = current_hp + num;
 
         //check if dead
         if (current_hp <= death) {
-            setDead(true);
+            setAvalible(death);
             return;
         }
         //Prevents hp going above max
@@ -175,31 +126,26 @@ public class Character extends BasicGame {
         return;
     }
 
-    public void attackChar(Character target)
-    {
-        if(target.distanceFrom(getX(), getY()) > attackRange)
-        {
-            target.changeHealth(0 - (getAttack()));
-        }
+    public int getLvl() {
+        return lvl;
     }
 
-    public double distanceFrom(int x, int y)
-    {
-        double dist = Math.sqrt(Math.pow((double)(x - getX()), 2) + Math.pow((double)(y - getY()), 2));
-        return(dist);
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
+    public int getDeath() {
+        return death;
+    }
 
+    public void setDeath(int death) {
+        this.getDeath();
+    }
 
-
-    /*
-            Rendering Methods for Slick Stuff
-     */
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
 
-        //Character reference
-        i = new Image(imageString);
+        i = new Image("Res/Mario.png");
         a = getAnimation(i, 20, 20, 20, 20, 27, 100);
 
         //Gets coordinates of Character
@@ -222,22 +168,22 @@ public class Character extends BasicGame {
         //System.out.println("X: " + getX() + " Y: " + getY());
 
         //Right movement
-        if (kbd.isKeyDown(Input.KEY_RIGHT) || kbd.isKeyDown(Input.KEY_D)) {
+        if (kbd.isKeyDown(Input.KEY_RIGHT)) {
             x += 1;
         }
 
         //Down movement
-        if (kbd.isKeyDown(Input.KEY_DOWN) || kbd.isKeyDown(Input.KEY_S)) {
+        if (kbd.isKeyDown(Input.KEY_DOWN)) {
             y += 1;
         }
 
         //Up movement
-        if (kbd.isKeyDown(Input.KEY_UP) || kbd.isKeyDown(Input.KEY_W)) {
+        if (kbd.isKeyDown(Input.KEY_UP)) {
             y -= 1;
         }
 
         //Left movement
-        if (kbd.isKeyDown(Input.KEY_LEFT) || kbd.isKeyDown(Input.KEY_A)) {
+        if (kbd.isKeyDown(Input.KEY_LEFT)) {
             x -= 1;
         }
 
@@ -259,6 +205,4 @@ public class Character extends BasicGame {
         }
         return a;
     }
-
-
 }

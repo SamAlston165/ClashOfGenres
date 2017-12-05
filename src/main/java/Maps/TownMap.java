@@ -1,6 +1,7 @@
 package Maps;
 
 import Entity.Character;
+import Entity.Item;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -18,17 +19,13 @@ public class TownMap extends BasicGameState {
     //Pause Menu t/f
     private Boolean quit;
 
+    //Item Menu boolean variable
+    private Boolean quit2;
+
     //Default Constructor matching superclass
     public TownMap() {
         super();
     }
-
-    @Override
-    public void enter(GameContainer container, StateBasedGame game) throws SlickException
-    {
-
-    }
-
 
     @Override
     public int getID() {
@@ -47,7 +44,11 @@ public class TownMap extends BasicGameState {
         //Initializes Character
         kbd.init(gameContainer);
 
+        //Boolean variable reference
         quit = false;
+
+        //Boolean variable reference
+        quit2 = false;
     }
 
     @Override
@@ -59,11 +60,10 @@ public class TownMap extends BasicGameState {
         //Draws Character
         kbd.render(gameContainer, graphics);
 
-
         //Display Bar Text
         if((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 245 && kbd.getY() < 275 ))
         {
-            graphics.drawString("Press Enter togo Bar", 60, 280);
+            graphics.drawString("Press Enter to go Bar", 60, 280);
 
             //Clears bar text
             if(!((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 245 && kbd.getY() < 275 )))
@@ -75,7 +75,7 @@ public class TownMap extends BasicGameState {
         //Display Shop Text
         if((kbd.getX() < 500 && kbd.getX() > 445) && (kbd.getY() > 245 && kbd.getY() < 275 ))
         {
-            graphics.drawString("Press Enter togo Shop", 390, 280);
+            graphics.drawString("Press Enter to go Shop", 390, 280);
 
             //Clears shop text
             if(!((kbd.getX() < 500 && kbd.getX() > 445) && (kbd.getY() > 245 && kbd.getY() < 275 )))
@@ -84,36 +84,43 @@ public class TownMap extends BasicGameState {
             }
         }
 
-        //Display text to go to battle
-        if((kbd.getX() == 584 && kbd.getY() <= 364) && (kbd.getX() == 584 && kbd.getY() >= 257))
-        {
-            graphics.drawString("Press Enter \ntogo Battle", 520, 220);
-
-            //Clears shop text
-            if(!((kbd.getX() == 584 && kbd.getY() <= 364) && (kbd.getX() == 584 && kbd.getY() >= 257)))
-            {
-                graphics.clear();
-            }
-        }
 
         //Display Pause Menu
         if(quit)
         {
-            graphics.setColor(Color.lightGray);
-            graphics.fillRect(180, 200, 280, 240);
             graphics.setColor(Color.black);
-
+            graphics.fillRect(180, 200, 280, 240);
+            graphics.setColor(Color.white);
             graphics.drawRect(180, 200, 280, 240);
             graphics.drawString("Resume (ESC)", 250, 250);
             graphics.drawString("Quit   ( Q )", 250, 300);
             graphics.drawString("", 250, 350);
+
             //Clears Pause Menu
             if(!quit)
             {
                 graphics.clear();
             }
         }
-        graphics.setColor(Color.white);
+
+        if(quit2)
+        {
+            //Item shop menu needs currency system implement
+            graphics.setColor(Color.black);
+            graphics.fillRect(180, 200, 280, 240);
+            graphics.setColor(Color.white);
+            graphics.drawRect(180, 200, 280, 240);
+            graphics.drawString("Welcome to Item Shop!",230,200);
+            graphics.drawString("Potion    ( P )", 250, 250);
+            graphics.drawString("Exit Menu ( Q )", 250, 300);
+            graphics.drawString("", 250, 350);
+
+            //Clears Item Menu
+            if(!quit2)
+            {
+                graphics.clear();
+            }
+        }
 
     }
 
@@ -127,11 +134,15 @@ public class TownMap extends BasicGameState {
         //Int contains duration of animation
         kbd.update(gameContainer, 0);
 
+        //Universal Transition button to Battle Map
+        if (input.isKeyPressed(Input.KEY_SPACE)) {
+            stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+        }
 
-        //Pause Menu is active and waiting response
+        //Pause menu interaction
         if(quit)
         {
-            if(input.isKeyPressed(Input.KEY_ESCAPE) || input.isKeyPressed(Input.KEY_TAB))
+            if(input.isKeyPressed(Input.KEY_ESCAPE))
             {
                 quit = false;
             }
@@ -141,44 +152,42 @@ public class TownMap extends BasicGameState {
             }
         }
 
-        /*
-                Transition block
-         */
+        //Item menu interaction
+        if(quit2)
+        {
+            if(input.isKeyPressed(Input.KEY_Q))
+            {
+                quit2 = false;
+            }
+            if(input.isKeyDown(Input.KEY_P))
+            {
+               //Needs add potion method to array list
+                // Deduct money method
+            }
+        }
 
-        //Transition button to exit game
-        if ((input.isKeyPressed(Input.KEY_ESCAPE) || input.isKeyPressed(Input.KEY_TAB)) && !quit) {
+        //Pause menu transition button to exit game
+        if (input.isKeyPressed(Input.KEY_ESCAPE) && !quit) {
             quit = true;
         }
 
-        //Transition to Bar
+        //Transition method to Bar if called
         if((kbd.getX() < 140 && kbd.getX() > 100) && (kbd.getY() > 255 && kbd.getY() < 275 ))
         {
-            if(input.isKeyDown(Input.KEY_ENTER) || input.isKeyDown(Input.KEY_SPACE))
+            if(input.isKeyDown(Input.KEY_ENTER))
             {
                 stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
             }
         }
-        //Transition to Shop
+
+        //Transition method to Item Shop if called
         if((kbd.getX() < 500 && kbd.getX() > 445) && (kbd.getY() > 245 && kbd.getY() < 275 ))
         {
-            if(input.isKeyDown(Input.KEY_ENTER) || input.isKeyDown(Input.KEY_SPACE))
+            if(input.isKeyDown(Input.KEY_ENTER))
             {
-                stateBasedGame.enterState(2, new FadeOutTransition(), new FadeInTransition());
+                quit2 = true;
             }
         }
-        //Transition to Battle
-        if ((kbd.getX() == 584 && kbd.getY() <= 364) && (kbd.getX() == 584 && kbd.getY() >= 257)) {
-
-            if(input.isKeyDown(Input.KEY_ENTER)) {
-                stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
-            }
-        }
-
-
-
-        /*
-                Begin Collision Block
-         */
 
         //Detects collision on outer bounds
         if (kbd.getX() == 585) {
@@ -290,7 +299,11 @@ public class TownMap extends BasicGameState {
             kbd.x += 1;
         }
 
-
+        //Transition based from Character location
+        if ((kbd.getX() == 584 && kbd.getY() <= 364) && (kbd.getX() == 584 && kbd.getY() >= 257)) {
+            if(input.isKeyDown(Input.KEY_ENTER)) {
+                stateBasedGame.enterState(3, new FadeOutTransition(), new FadeInTransition());
+            }
+        }
     }
-
 }
