@@ -34,6 +34,7 @@ public class Character extends BasicGame {
 
     //character image location
     private String imageString;
+    private String name;
 
     /*
         Constructor Block
@@ -43,6 +44,7 @@ public class Character extends BasicGame {
         super("");
         this.lvl = 1;
         this.max_hp = 100;
+        this.current_hp = this.max_hp;
         this.attack = 20;
         this.movement = 20;
         this.attackRange = 25;
@@ -61,6 +63,7 @@ public class Character extends BasicGame {
         super("");
         this.lvl = lvl;
         this.max_hp = max_hp;
+        this.current_hp = this.max_hp;
         this.attack = attack;
         this.movement = movement;
         this.attackRange = attackRange;
@@ -148,6 +151,14 @@ public class Character extends BasicGame {
 
     public void setDead(Boolean dead) { this.dead = dead; }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getLvl() {
         return lvl;
     }
@@ -206,6 +217,7 @@ public class Character extends BasicGame {
 
         //Character reference
         i = new Image(getImageString());
+        setName(imageString.substring(4, imageString.length() - 4));
         a = getAnimation(i, 20, 20, 20, 20, 27, 100);
 
         //Gets coordinates of Character
@@ -265,5 +277,6 @@ public class Character extends BasicGame {
         }
         return a;
     }
+
 
 }

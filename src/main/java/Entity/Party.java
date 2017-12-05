@@ -63,4 +63,9 @@ public class Party {
             party.remove(oldMem);
         }
     }
+
+    public int getPartySize()
+    {
+        return(party.size());
+    }
 }

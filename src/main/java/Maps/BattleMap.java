@@ -1,19 +1,34 @@
 package Maps;
 
 import Entity.Character;
+import Entity.Party;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+import java.util.ArrayList;
+
 public class BattleMap extends BasicGameState {
 
     //Battle map image
     private Image battleMap;
 
-    //Character object
-    private Character kbd;
+    //Character object / Party
+    private Character chosenC;
+    private Party playerT;
+    private Party enemyT;
+
+    //Pause Variable
+    private boolean quit;
+
+    //Mouse tracking
+    private int mouseX;
+    private int mouseY;
+
+    //Variable for loops in class
+    private int i;
 
     //Default Constructor matching superclass
     public BattleMap() {
@@ -38,10 +53,11 @@ public class BattleMap extends BasicGameState {
         battleMap = new Image("Res/BattleMap.png");
 
         //Character reference
-        kbd = new Character();
+        chosenC = new Character();
+        i = 0;
 
         //Initializes Character
-        kbd.init(gameContainer);
+        chosenC.init(gameContainer);
 
 
     }
@@ -56,7 +72,7 @@ public class BattleMap extends BasicGameState {
         graphics.setColor(Color.lightGray);
 
         //Draws Character
-        kbd.render(gameContainer, graphics);
+        chosenC.render(gameContainer, graphics);
 
         //light rectangle for bottom screen menu
         graphics.fillRect(0, 440, 640, 200);
@@ -68,7 +84,34 @@ public class BattleMap extends BasicGameState {
         graphics.drawRect(0, 440, 640, 200);
 
         //sample text for now
-        graphics.drawString("insert menu stuff", 25, 500);
+        graphics.drawString("Character Selected: " + chosenC.getName(), 25, 450);
+        graphics.drawString("Character Health:   " + chosenC.getCurrent_hp() +"/" + chosenC.getMax_hp(), 25, 500);
+        graphics.drawString("Character Lvl:    " + chosenC.getLvl(), 340, 450);
+        graphics.drawString("Character Attack: " + chosenC.getAttack(), 340, 500);
+
+        if(mouseY < 440)
+        {
+            graphics.setColor(Color.white);
+            graphics.drawRect((40 * (mouseX / 40)), (40 * (mouseY / 40)), 40, 40);
+
+        }
+
+        if(quit)
+        {
+            graphics.setColor(Color.lightGray);
+            graphics.fillRect(180, 200, 280, 240);
+            graphics.setColor(Color.black);
+            graphics.drawRect(180, 200, 280, 240);
+            graphics.drawString("Resume      (ESC)", 250, 250);
+            graphics.drawString("Surrender   ( S )", 250, 300);
+            graphics.drawString("Quit Game   ( Q )", 250, 350);
+
+            //Clears Pause Menu
+            if(!quit)
+            {
+                graphics.clear();
+            }
+        }
 
     }
 
@@ -78,12 +121,40 @@ public class BattleMap extends BasicGameState {
         //Input Object
         Input input = gameContainer.getInput();
 
+        //Mouse input
+        mouseX = input.getMouseX();
+        mouseY = input.getMouseY();
+
+
+        //for(i = 0; i < .getPartySize(); i++)
+
         //Gets user coordinates and updates the user
-        kbd.setX(kbd.getX());
-        kbd.setY(kbd.getY());
+        chosenC.setX(chosenC.getX());
+        chosenC.setY(chosenC.getY());
 
         //Int contains duration of animation
-        kbd.update(gameContainer, 0);
+        chosenC.update(gameContainer, 0);
+
+        //Pause menu interaction
+        if(quit)
+        {
+            if(input.isKeyPressed(Input.KEY_ESCAPE))
+            {
+                quit = false;
+            }
+            if(input.isKeyDown(Input.KEY_S))
+            {
+                //input surrender call
+            }
+            if(input.isKeyDown(Input.KEY_Q))
+            {
+                System.exit(0);
+            }
+        }
+
+        /*
+                Transition Block
+         */
 
         //Transition button to Town Map
         if (input.isKeyDown(Input.KEY_ENTER)) {
@@ -95,44 +166,79 @@ public class BattleMap extends BasicGameState {
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
-        //Transition button to exit game
-        if (input.isKeyDown(Input.KEY_ESCAPE)) {
-            System.exit(0);
+        //Pause menu transition button to exit game
+
+        if (input.isKeyPressed(Input.KEY_ESCAPE) && !quit) {
+            quit = true;
+        }
+
+        /*
+                Collision Block
+         */
+
+        //Detects collision on outer bounds
+        if (chosenC.getX() == 640) {
+            chosenC.x -= 1;
         }
 
         //Detects collision on outer bounds
-        if (kbd.getX() == 640) {
-            kbd.x -= 1;
+        if (chosenC.getY() == 410) {
+            chosenC.y -= 1;
         }
 
         //Detects collision on outer bounds
-        if (kbd.getY() == 440) {
-            kbd.y -= 1;
+        if (chosenC.getY() == 0) {
+            chosenC.y += 1;
         }
 
         //Detects collision on outer bounds
-        if (kbd.getY() == 0) {
-            kbd.y += 1;
-        }
-
-        //Detects collision on outer bounds
-        if (kbd.getX() == 0) {
-            kbd.x += 1;
+        if (chosenC.getX() == 0) {
+            chosenC.x += 1;
         }
 
         //Transition based from Character location
-        if ((kbd.getX() == -38) && (kbd.getY() <= 271 || kbd.getY() >= 201)) {
-            kbd.setX(kbd.getX() + 1);
-            kbd.setY(kbd.getY());
+        if ((chosenC.getX() == -38) && (chosenC.getY() <= 271 || chosenC.getY() >= 201)) {
+            chosenC.setX(chosenC.getX() + 1);
+            chosenC.setY(chosenC.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
         //Transition based from Character location
-        if ((kbd.getX() == 520) && (kbd.getY() <= 299 || kbd.getY() >= 194)) {
-            kbd.setX(kbd.getX() - 1);
-            kbd.setY(kbd.getY());
+        if ((chosenC.getX() == 520) && (chosenC.getY() <= 299 || chosenC.getY() >= 194)) {
+            chosenC.setX(chosenC.getX() - 1);
+            chosenC.setY(chosenC.getY());
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
     }
+
+
+
+    private void victory()
+    {
+        ArrayList<Character> team = playerT.getParty();
+        for(i = 0; i < playerT.getPartySize(); i++)
+        {
+            chosenC = team.get(0);
+            chosenC.setLvl(chosenC.getLvl() + 1);
+            chosenC.setMax_hp(chosenC.getMax_hp() + 20);
+            chosenC.setCurrent_hp(chosenC.getMax_hp());
+            chosenC.setAttack(chosenC.getAttack() + 10);
+        }
+        playerT.setMoney(playerT.getMoney() + chosenC.getLvl() * 100);
+    }
+
+    private void loss()
+    {
+        ArrayList<Character> team = playerT.getParty();
+        for(i = 0; i < playerT.getPartySize(); i++) {
+            chosenC = team.get(0);
+            chosenC.setCurrent_hp(chosenC.getMax_hp());
+        }
+        playerT.setMoney(playerT.getMoney() + chosenC.getLvl() * 100);
+    }
+
+
+
+
 }
 
