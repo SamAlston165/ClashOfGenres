@@ -58,6 +58,8 @@ public class CharacterSelection extends BasicGameState
         //Transition button to Town Map
         if (input.isKeyPressed(Input.KEY_1)) {
 
+
+
             stateBasedGame.enterState(1, new FadeOutTransition(), new FadeInTransition());
         }
 
