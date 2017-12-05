@@ -181,22 +181,22 @@ public class Character extends BasicGame {
         //System.out.println("X: " + getX() + " Y: " + getY());
 
         //Right movement
-        if (kbd.isKeyDown(Input.KEY_RIGHT)) {
+        if (kbd.isKeyDown(Input.KEY_RIGHT) || kbd.isKeyDown(Input.KEY_D)) {
             x += 1;
         }
 
         //Down movement
-        if (kbd.isKeyDown(Input.KEY_DOWN)) {
+        if (kbd.isKeyDown(Input.KEY_DOWN) || kbd.isKeyDown(Input.KEY_S)) {
             y += 1;
         }
 
         //Up movement
-        if (kbd.isKeyDown(Input.KEY_UP)) {
+        if (kbd.isKeyDown(Input.KEY_UP) || kbd.isKeyDown(Input.KEY_W)) {
             y -= 1;
         }
 
         //Left movement
-        if (kbd.isKeyDown(Input.KEY_LEFT)) {
+        if (kbd.isKeyDown(Input.KEY_LEFT) || kbd.isKeyDown(Input.KEY_A)) {
             x -= 1;
         }
 
