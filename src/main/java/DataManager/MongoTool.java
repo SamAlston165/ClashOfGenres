@@ -53,10 +53,11 @@ public class MongoTool {
     }
 
 
-    //WORKING ON THIS IN LOADER SOME REFACTORING WILL SURELY BE NEEDED
+    /*WORKING ON THIS IN LOADER SOME REFACTORING WILL SURELY BE NEEDED
     public static Party parseDoc(String){
 
     }
+    */
 
 
 }
