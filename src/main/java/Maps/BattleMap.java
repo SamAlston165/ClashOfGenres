@@ -63,7 +63,7 @@ public class BattleMap extends BasicGameState {
         playerT = new Party(0);
         enemyT = new Party(1);
         chosenC = playerT.getParty().get(0);
-        chosenT = playerT.getParty().get(0);
+        chosenT = enemyT.getParty().get(0);
         i = 0;
         surrender = false;
         action = false;
@@ -104,7 +104,7 @@ public class BattleMap extends BasicGameState {
         playerT = new Party(0);
         enemyT = new Party(1);
         chosenC = playerT.getParty().get(0);
-        chosenT = playerT.getParty().get(0);
+        chosenT = enemyT.getParty().get(0);
         i = 0;
         action = false;
         actionCode = 0;
@@ -164,8 +164,8 @@ public class BattleMap extends BasicGameState {
         //sample text for now
         graphics.drawString("Character Selected: " + chosenC.getName(), 25, 450);
         graphics.drawString("Character Health:   " + chosenC.getCurrent_hp() +"/" + chosenC.getMax_hp(), 25, 500);
-        graphics.drawString("Character Lvl:    " + chosenC.getLvl(), 340, 450);
-        graphics.drawString("Character Attack: " + chosenC.getAttack(), 340, 500);
+        graphics.drawString("Enemy Selected:     " + chosenT.getName(), 340, 450);
+        graphics.drawString("Enemy Health:       " + chosenT.getCurrent_hp() +"/" + chosenT.getMax_hp(), 340, 500);
         graphics.drawRect(35 ,550, 110, 50);
         graphics.drawString("  Move  ", 55, 570);
         graphics.drawRect(185 ,550, 110, 50);
@@ -204,6 +204,18 @@ public class BattleMap extends BasicGameState {
                             chosenC.getAttackRange() * 2 + GRID_SIZE,
                             chosenC.getAttackRange() * 2 + GRID_SIZE);
                 }
+            }
+            if(actionCode == 2)
+            {
+                graphics.setColor(Color.red);
+                graphics.drawRect(chosenC.getX() - chosenC.getAttackRange(),
+                        (chosenC.getY() - chosenC.getAttackRange()),
+                        chosenC.getAttackRange() * 2 + GRID_SIZE,
+                        chosenC.getAttackRange() * 2 + GRID_SIZE);
+            }
+            if(actionCode == 3)
+            {
+                //Insert shit to tell them they're using a potion
             }
         }
 
@@ -373,7 +385,8 @@ public class BattleMap extends BasicGameState {
             {
                 if((chosenC.getX() + chosenC.getMovement()) >= fakeX && (chosenC.getX() - chosenC.getMovement()) <= fakeX)
                 {
-                   if(((chosenC.getY() + chosenC.getMovement()) >= fakeY && (chosenC.getY() - chosenC.getMovement()) <= fakeY) && input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+                   if(((chosenC.getY() + chosenC.getMovement()) >= fakeY
+                           && (chosenC.getY() - chosenC.getMovement()) <= fakeY))
                    {
                        chosenC.setX(fakeX);
                        chosenC.setY(fakeY);
@@ -389,8 +402,7 @@ public class BattleMap extends BasicGameState {
                 if((chosenC.getX() + chosenC.getAttackRange()) >= fakeX && (chosenC.getX() - chosenC.getAttackRange()) <= fakeX)
                 {
                     if (((chosenC.getY() + chosenC.getAttackRange()) >= fakeY
-                            && (chosenC.getY() - chosenC.getAttackRange()) <= fakeY)
-                            && input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+                            && (chosenC.getY() - chosenC.getAttackRange()) <= fakeY))
                     {
                         chosenT = checkCharacter(enemyT);
                         if(chosenT != null) {
@@ -408,21 +420,18 @@ public class BattleMap extends BasicGameState {
             //if item action
             else if(actionCode == 3)
             {
-                if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+                chosenT = checkCharacter(playerT);
+                if(chosenT != null)
                 {
-                    chosenT = checkCharacter(playerT);
-                    if(chosenT != null)
+                    if (playerT.getInventory().get(0) != null)
                     {
-                        if (playerT.getInventory().get(0) != null)
-                        {
-                            itemInUse = (Item) playerT.getInventory().get(0);
-                            itemInUse.resolveEffect(chosenT);
-                            playerT.getInventory().remove(0);
-                            itemInUse = null;
-                        }
-                        chosenT = chosenC;
-                        chosenC.setAvailableItem(false);
+                        itemInUse = (Item) playerT.getInventory().get(0);
+                        itemInUse.resolveEffect(chosenT);
+                        playerT.getInventory().remove(0);
+                        itemInUse = null;
                     }
+                    chosenT = chosenC;
+                    chosenC.setAvailableItem(false);
                 }
 
             }
@@ -549,12 +558,24 @@ public class BattleMap extends BasicGameState {
         {
            for (i = 0; i < enemyT.getPartySize(); i++)
             {
-                AI.decide(enemyT.getParty().get(i), playerT.getParty());
+                if(!(enemyT.getParty().get(i).getDead()))
+                {
+                    AI.decide(enemyT.getParty().get(i), playerT.getParty());
+                }
             }
             resetTurn();
         }
 
-        if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON))
+
+        if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON) && !action)
+        {
+            chosenT = checkCharacter(enemyT);
+            if(chosenT == null)
+            {
+                chosenT = enemyT.getParty().get(0);
+            }
+        }
+        if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON) && action)
         {
             action = false;
             actionCode = 0;
@@ -628,9 +649,18 @@ public class BattleMap extends BasicGameState {
     {
         for(i = 0; i < playerT.getPartySize(); i++)
         {
-            playerT.getParty().get(i).setAvailableMove(true);
-            playerT.getParty().get(i).setAvailableItem(true);
-            playerT.getParty().get(i).setAvailableAttk(true);
+            if (!(playerT.getParty().get(i).getDead()))
+            {
+                playerT.getParty().get(i).setAvailableMove(true);
+                playerT.getParty().get(i).setAvailableItem(true);
+                playerT.getParty().get(i).setAvailableAttk(true);
+            }
+            else
+            {
+                playerT.getParty().get(i).setAvailableMove(false);
+                playerT.getParty().get(i).setAvailableItem(false);
+                playerT.getParty().get(i).setAvailableAttk(false);
+            }
         }
         chosenC = playerT.getParty().get(0);
         chosenT = playerT.getParty().get(0);

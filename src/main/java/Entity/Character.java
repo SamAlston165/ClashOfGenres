@@ -182,6 +182,7 @@ public class Character extends BasicGame {
         //check if dead
         if (current_hp <= death) {
             setDead(true);
+            current_hp = 0;
             return;
         }
         //Prevents hp going above max

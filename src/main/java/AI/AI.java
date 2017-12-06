@@ -42,7 +42,7 @@ public class AI {
         Character finalTar = targets.get(0);
         for(i = 0; i < info.size(); i++)
         {
-            if(info.get(i).getDistance() < info.get(x).getDistance())
+            if((info.get(i).getDistance() < info.get(x).getDistance()) && !(targets.get(i).getDead()))
             {
                 x = i;
                 finalTar = targets.get(x);
@@ -118,7 +118,7 @@ public class AI {
     //FUNCTION FOR CHECKING TARGETS WITHIN ATTACK RANGE
     public static boolean inRange(Character enemy, double distance){
         boolean attackRange = false;
-        if(enemy.getAttackRange() < distance)
+        if(enemy.getAttackRange() >= distance)
             attackRange = true;
 
         return attackRange;
@@ -132,6 +132,7 @@ public class AI {
 
     //FUNCTION FOR CALCULATING DISTANCE BETWEEN ENEMY AND TARGET
     public static double getDistance(Character enemy, Character target){
+
         double X = Math.pow((enemy.getX() - target.getX()), 2.0);
         double Y = Math.pow((enemy.getY()- target.getY()), 2.0);
 
