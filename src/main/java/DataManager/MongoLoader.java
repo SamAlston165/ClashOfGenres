@@ -17,7 +17,7 @@ public class MongoLoader extends MongoTool {
 
         FindIterable<Document> doc = collection.find();
 
-        doc.
+
 
 
         return history;

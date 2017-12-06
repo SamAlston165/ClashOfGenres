@@ -20,7 +20,7 @@ public class MongoUpdater extends MongoTool {
 
         Iterator it = oldGame.iterator();
 
-        super.collection.deleteOne(it.next());
+        //super.collection.deleteOne(it.next());
 
         //TURN PARTY OBJECT INTO A MONGO DOCUMENT
         Document gameToSave = createSave(activeGroup);
