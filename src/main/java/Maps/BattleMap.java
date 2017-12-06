@@ -1,6 +1,9 @@
 package Maps;
 
+import AI.AI;
 import Entity.Character;
+import Entity.HealthPotion;
+import Entity.Item;
 import Entity.Party;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
@@ -21,6 +24,7 @@ public class BattleMap extends BasicGameState {
     private Party playerT;
     private Party enemyT;
     private ArrayList<Character> tester;
+    private Item itemInUse;
 
     //Pause/Reaction Variables
     private boolean quit;
@@ -39,6 +43,8 @@ public class BattleMap extends BasicGameState {
     private int mouseY;
     private int fakeX;
     private int fakeY;
+    private int fakeCharX;
+    private int fakeCharY;
 
 
 
@@ -320,13 +326,14 @@ public class BattleMap extends BasicGameState {
         mouseY = input.getMouseY();
         fakeX = (GRID_SIZE * (mouseX / GRID_SIZE)) + BUFFER_SPACE;
         fakeY = (GRID_SIZE * (mouseY / GRID_SIZE)) + BUFFER_SPACE;
+//        fakeCharX = (GRID_SIZE * (chosenC.getX() / GRID_SIZE)) + BUFFER_SPACE;
+//        fakeCharY = ;
 
         if((mouseY > 550 && mouseY < 600))
         {
 
             if( (mouseX >= 35 && mouseX <= 145) && chosenC.getAvailableMove() && input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
             {
-                System.out.println("is this happening?2");
                 action = true;
                 actionCode = 1;
             }
@@ -364,19 +371,59 @@ public class BattleMap extends BasicGameState {
             //if move action
             if(actionCode == 1)
             {
-                if(mouseX < (chosenC.getX() + chosenC.getMovement()) )
+                if((chosenC.getX() + chosenC.getMovement()) >= fakeX && (chosenC.getX() - chosenC.getMovement()) <= fakeX)
                 {
-
+                   if(((chosenC.getY() + chosenC.getMovement()) >= fakeY && (chosenC.getY() - chosenC.getMovement()) <= fakeY) && input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+                   {
+                       chosenC.setX(fakeX);
+                       chosenC.setY(fakeY);
+                       action = false;
+                       actionCode = 0;
+                       chosenC.setAvailableMove(false);
+                   }
                 }
             }
             //if attack action
             else if(actionCode == 2)
             {
-
+                if((chosenC.getX() + chosenC.getAttackRange()) >= fakeX && (chosenC.getX() - chosenC.getAttackRange()) <= fakeX)
+                {
+                    if (((chosenC.getY() + chosenC.getAttackRange()) >= fakeY
+                            && (chosenC.getY() - chosenC.getAttackRange()) <= fakeY)
+                            && input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+                    {
+                        chosenT = checkCharacter(enemyT);
+                        if(chosenT != null) {
+                            chosenC.attackChar(chosenT);
+                            chosenC.setAvailableMove(false);
+                            chosenC.setAvailableAttk(false);
+                            chosenC.setAvailableItem(false);
+                            chosenT = chosenC;
+                            action = false;
+                            actionCode = 0;
+                        }
+                    }
+                }
             }
             //if item action
             else if(actionCode == 3)
             {
+                if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON))
+                {
+                    chosenT = checkCharacter(playerT);
+                    if(chosenT != null)
+                    {
+                        if (playerT.getInventory().get(0) != null)
+                        {
+                            itemInUse = (Item) playerT.getInventory().get(0);
+                            itemInUse.resolveEffect(chosenT);
+                            playerT.getInventory().remove(0);
+                            itemInUse = null;
+                        }
+                        chosenT = chosenC;
+                        chosenC.setAvailableItem(false);
+                    }
+                }
 
             }
         }
@@ -500,7 +547,10 @@ public class BattleMap extends BasicGameState {
         //test for turn end
         if(checkTurnEnd(playerT) || actionCode == 4)
         {
-           // AI.runTurn(enemyT, playerT);
+           for (i = 0; i < enemyT.getPartySize(); i++)
+            {
+                AI.decide(enemyT.getParty().get(i), playerT.getParty());
+            }
             resetTurn();
         }
 

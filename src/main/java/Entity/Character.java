@@ -194,7 +194,7 @@ public class Character extends BasicGame {
 
     public void attackChar(Character target)
     {
-        if(target.distanceFrom(getX(), getY()) > attackRange)
+        //if(target.distanceFrom(getX(), getY()) > attackRange)
         {
             target.changeHealth(0 - (getAttack()));
         }

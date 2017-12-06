@@ -8,7 +8,7 @@ public class AInfo {
 
 
     public AInfo(boolean range, int threat, double distance){
-        this.distance = distance;
+        this.setDistance(distance);
         this.range = range;
         this.threat = threat;
     }
@@ -16,13 +16,13 @@ public class AInfo {
     public AInfo(boolean range){
         this.range = range;
         this.threat = 0;
-        this.distance = 0.0;
+        this.setDistance(0.0);
     }
 
     public AInfo(int threat){
         this.threat = threat;
         this.range = false;
-        this.distance = 0.0;
+        this.setDistance(0.0);
     }
 
     public boolean getRange() {
@@ -39,5 +39,13 @@ public class AInfo {
 
     public void setThreat(int threat) {
         this.threat = threat;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }
