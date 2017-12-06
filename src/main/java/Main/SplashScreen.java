@@ -67,7 +67,7 @@ public class SplashScreen extends JPanel {
         JWindow window = new JWindow();
         SplashScreen kbs = new SplashScreen();
         window.getContentPane().add(kbs);
-        window.getContentPane().add(new JLabel("", new ImageIcon("Res/MainMenu.png"), SwingConstants.CENTER));
+        window.getContentPane().add(new JLabel("", new ImageIcon("Res/MainMenu2.png"), SwingConstants.CENTER));
         window.pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension labelSize = window.getPreferredSize();

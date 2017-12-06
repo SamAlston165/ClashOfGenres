@@ -1,7 +1,9 @@
 package Maps;
 
 import Entity.Character;
+import Entity.HealthPotion;
 import Entity.Item;
+import Entity.Party;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -15,6 +17,7 @@ public class TownMap extends BasicGameState {
 
     //Character object
     private Character kbd;
+    private Party team;
 
     //Pause Menu t/f
     private Boolean quit;
@@ -49,6 +52,8 @@ public class TownMap extends BasicGameState {
 
         //Boolean variable reference
         quit2 = false;
+
+        team = new Party(0);
     }
 
     @Override
@@ -111,10 +116,14 @@ public class TownMap extends BasicGameState {
             graphics.setColor(Color.white);
             graphics.drawRect(180, 200, 280, 240);
             graphics.drawString("Welcome to Item Shop!",230,200);
-            graphics.drawString("Potion x 1( P )", 250, 250);
-            graphics.drawString("Armor x 1 ( A )", 250, 275);
-            graphics.drawString("Exit Menu ( Q )", 250, 300);
-            graphics.drawString("", 250, 350);
+            graphics.drawString("100  G Potion x 1( P )", 230, 250);
+            graphics.drawString("2500 G Armor x 1 ( A )", 230, 275);
+            graphics.drawString("     Exit Menu ( Q )", 250, 300);
+            graphics.drawString("Money:  " + team.getMoney() + " G", 250, 350);
+            if(team.getMoney() == 0)
+            {
+                graphics.drawString("Insufficient funds.", 250, 370);
+            }
 
             //Clears Item Menu
             if(!quit2)
@@ -160,11 +169,13 @@ public class TownMap extends BasicGameState {
             {
                 quit2 = false;
             }
-            if(input.isKeyDown(Input.KEY_P))
+            if(input.isKeyPressed(Input.KEY_P))
             {
-               //Needs add potion method to array list
-                //Needs add armor method to array list
-                // Deduct money method
+                if((team.getMoney() - 100) >= 0)
+                {
+                    team.getInventory().add(new HealthPotion());
+                    team.setMoney(team.getMoney() - 100);
+                }
             }
         }
 
