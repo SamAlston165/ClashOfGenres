@@ -47,6 +47,7 @@ public class AI {
     }
 
     public static void attack(Character enemy, Character target){
+        enemy.attackChar(target);
 
     }
 
