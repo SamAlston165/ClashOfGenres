@@ -11,7 +11,7 @@ public class Game {
         SplashScreen splash = new SplashScreen();
 
         //Call to splash screen main method
-        //splash.call();
+        splash.call();
 
         try {
 
@@ -25,7 +25,7 @@ public class Game {
             container.start();
 
         } catch (SlickException e) {
-            
+
             e.printStackTrace();
         }
     }

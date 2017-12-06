@@ -47,10 +47,10 @@ public class SplashScreen extends JPanel {
             //simulate heavy stuff
             try {
                 Random generator = new Random();
-                int Low = 100;
-                int High = 300;
-                int Result = generator.nextInt(High - Low) + Low;
-                Thread.sleep(Result);
+                int Low = 10;
+                int High = 100;
+                int result = generator.nextInt(High - Low) + Low;
+                Thread.sleep(result);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,7 +67,7 @@ public class SplashScreen extends JPanel {
         JWindow window = new JWindow();
         SplashScreen kbs = new SplashScreen();
         window.getContentPane().add(kbs);
-        window.getContentPane().add(new JLabel("", new ImageIcon("Res/MainMenu2.png"), SwingConstants.CENTER));
+        window.getContentPane().add(new JLabel("", new ImageIcon("Res/Splash.png"), SwingConstants.CENTER));
         window.pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension labelSize = window.getPreferredSize();
