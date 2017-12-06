@@ -1,6 +1,7 @@
 package DataManager;
 
 import Entity.Party;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.client.MongoCollection;
@@ -19,6 +20,7 @@ public class MongoTool {
     public MongoTool(){
         this.database = connect();
         this.collection = this.database.getCollection("Saved Games");
+
 
     }
 
@@ -47,6 +49,12 @@ public class MongoTool {
 
         Document gameState = new Document("game", activeParty);
         return gameState;
+
+    }
+
+
+    //WORKING ON THIS IN LOADER SOME REFACTORING WILL SURELY BE NEEDED
+    public static Party parseDoc(String){
 
     }
 
