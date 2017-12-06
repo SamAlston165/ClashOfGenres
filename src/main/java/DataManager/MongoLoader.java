@@ -15,10 +15,18 @@ public class MongoLoader extends MongoTool {
 
     public Party loadGame(){
 
+        //RETRIEVE THE SAVED GAME
         FindIterable<Document> doc = collection.find();
 
+        /************************************************************************
+         *
+         * PARSE THE DOCUMENT SOMEHOW INTO A PARTY OBJECT AND RETURN PARTY OBJECT
+         *
+         ************************************************************************/
 
 
+
+        Party history = new Party();
 
         return history;
     }
