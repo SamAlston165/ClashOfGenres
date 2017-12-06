@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6beaaa5e-b5b2-4c0f-b42f-d2b3756e2724" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/DataManager/MongoLoader.java" afterPath="$PROJECT_DIR$/src/main/java/DataManager/MongoLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/DataManager/MongoUpdater.java" afterPath="$PROJECT_DIR$/src/main/java/DataManager/MongoUpdater.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MongoUpdater.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MongoUpdater.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/DataManager/MongoUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+            <state relative-caret-position="383">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MongoLoader.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MongoLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DataManager/MongoLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -184,8 +183,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Maps/BattleMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/DataManager/MongoWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/DataManager/MongoTool.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DataManager/MongoUpdater.java" />
         <option value="$PROJECT_DIR$/src/main/java/DataManager/MongoLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DataManager/MongoUpdater.java" />
       </list>
     </option>
   </component>
@@ -524,11 +523,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512522462812</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Mongo Stuff">
+      <created>1512522520363</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1512522520364</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3830000" />
+    <option name="totallyTimeSpent" value="4006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="741" extended-state="6" />
@@ -976,6 +982,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DataManager/MongoLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DataManager/MongoTool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -988,18 +1004,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DataManager/MongoUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DataManager/MongoLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="383">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

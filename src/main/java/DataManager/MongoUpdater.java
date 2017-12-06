@@ -16,11 +16,7 @@ public class MongoUpdater extends MongoTool {
     public void update(Party activeGroup){
 
         //DELETE THE PREVIOUS GAME STATE (EASIEST WAY TO DO THIS)
-        FindIterable<Document> oldGame = super.collection.find();
-
-        Iterator it = oldGame.iterator();
-
-        //super.collection.deleteOne(it.next());
+        super.collection.deleteOne(new Document());
 
         //TURN PARTY OBJECT INTO A MONGO DOCUMENT
         Document gameToSave = createSave(activeGroup);
