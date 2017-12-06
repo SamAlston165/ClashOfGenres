@@ -42,10 +42,19 @@ public class AI {
         Character finalTar = targets.get(0);
         for(i = 0; i < info.size(); i++)
         {
+            if(finalTar.getDead())
+            {
+                if(!(targets.get(i).getDead()))
+                {
+                    finalTar = targets.get(i);
+                    x = i;
+                }
+            }
             if((info.get(i).getDistance() < info.get(x).getDistance()) && !(targets.get(i).getDead()))
             {
                 x = i;
                 finalTar = targets.get(x);
+
             }
         }
 
@@ -60,28 +69,40 @@ public class AI {
     //FUNCTION FOR MOVING ENEMY
     public static void moveEnemy(Character enemy, Character target, AInfo tInfo)
     {
+
         if(tInfo.getRange())
         {
             if(target.getX() > enemy.getX())
             {
+                enemy.setX(target.getX() - enemy.getAttackRange());
                 if(target.getY() > enemy.getY())
                 {
-
+                    enemy.setY(target.getY() - enemy.getAttackRange() );
+                }
+                else if (target.getY() == enemy.getY())
+                {
+                    enemy.setY(enemy.getY());
                 }
                 else
                 {
-
+                    enemy.setY(target.getY() + enemy.getAttackRange() );
                 }
             }
             else
             {
+                enemy.setX(target.getX() + enemy.getAttackRange());
+
                 if(target.getY() > enemy.getY())
                 {
-
+                    enemy.setY(target.getY() - enemy.getAttackRange());
+                }
+                else if (target.getY() == enemy.getY())
+                {
+                    enemy.setY(enemy.getY());
                 }
                 else
                 {
-
+                    enemy.setY(target.getY() + enemy.getAttackRange());
                 }
             }
         }
@@ -89,36 +110,35 @@ public class AI {
         {
             if(target.getX() > enemy.getX())
             {
+                enemy.setX(enemy.getX() + enemy.getMovement()) ;
                 if(target.getY() > enemy.getY())
                 {
-
+                    enemy.setY(enemy.getY() + enemy.getMovement());
                 }
                 else
                 {
-
+                    enemy.setY(enemy.getY() - enemy.getMovement());
                 }
             }
             else
             {
+                enemy.setX(enemy.getX() - enemy.getMovement());
                 if(target.getY() > enemy.getY())
                 {
-
+                    enemy.setY(enemy.getY() + enemy.getMovement());
                 }
                 else
                 {
-
+                    enemy.setY(enemy.getY() - enemy.getMovement());
                 }
             }
         }
-
-        enemy.setX((enemy.getX() ));
-        enemy.setY((enemy.getY() ));
     }
 
     //FUNCTION FOR CHECKING TARGETS WITHIN ATTACK RANGE
     public static boolean inRange(Character enemy, double distance){
         boolean attackRange = false;
-        if(enemy.getAttackRange() >= distance)
+        if((enemy.getAttackRange()) >= distance)
             attackRange = true;
 
         return attackRange;
